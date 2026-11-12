@@ -23,6 +23,7 @@ case "$REPO_URL" in
   *"/YOU/"*) echo "ERROR: REPO_URL is still the example placeholder — set it in deploy/aws.env (e.g. https://github.com/<you>/fern.git)" >&2; exit 1 ;;
 esac
 : "${INSTANCE_TYPE:=t3.micro}"
+: "${ROOT_VOLUME_GB:=20}"   # Go/Caddy plugin build needs several GB of scratch space
 : "${SG_NAME:=fern-prod-sg}"
 : "${ROLE_NAME:=fern-route53}"
 : "${PROFILE_NAME:=fern-route53-profile}"
@@ -112,11 +113,13 @@ say "4. launch instance"
 KEY_ARGS=()
 [ -n "$KEY_NAME" ] && KEY_ARGS=(--key-name "$KEY_NAME")
 # Retry once or twice: brand-new IAM profiles can take a few seconds to propagate.
+ROOT_DEV=$(aws ec2 describe-images --image-ids "$AMI_ID" --query 'Images[0].RootDeviceName' --output text)
 RUN_ERR=$(mktemp)
 for attempt in 1 2 3 4; do
   if INSTANCE_ID=$(aws ec2 run-instances \
     --image-id "$AMI_ID" --instance-type "$INSTANCE_TYPE" "${KEY_ARGS[@]+"${KEY_ARGS[@]}"}" \
     --subnet-id "$SUBNET_ID" --security-group-ids "$SG_ID" --associate-public-ip-address \
+    --block-device-mappings "[{\"DeviceName\":\"$ROOT_DEV\",\"Ebs\":{\"VolumeSize\":$ROOT_VOLUME_GB,\"VolumeType\":\"gp3\",\"DeleteOnTermination\":true}}]" \
     --iam-instance-profile Name="$PROFILE_NAME" \
     --user-data "file://$UD" \
     --credit-specification '{"CpuCredits":"unlimited"}' \
