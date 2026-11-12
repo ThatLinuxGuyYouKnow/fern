@@ -1,0 +1,9 @@
+name,price,image_url,description,stock
+"Heirloom Tomatoes (1 kg)",4.99,/demo/market/tomatoes.svg,"Vine-ripened, grown 12 miles away",42
+"Free-Range Eggs (12)",6.50,/demo/market/eggs.svg,"Pasture-raised, collected daily",38
+"Crusty Sourdough Loaf",5.25,/demo/market/sourdough.svg,"Baked at 5am, stone-oven crust",24
+"Hass Avocados (4 pack)",7.99,/demo/market/avocados.svg,"Ready to eat in 1-2 days",31
+"Raw Wildflower Honey (340 g)",11.50,/demo/market/honey.svg,"Unfiltered, single-apiary",18
+"Aged Farmhouse Cheddar (250 g)",9.75,/demo/market/cheddar.svg,"Aged 12 months, cloth-bound",16
+"Cold-Pressed Olive Oil (500 ml)",13.99,/demo/market/olive-oil.svg,"First press, peppery finish",14
+"Fresh Basil Bunch",2.99,/demo/market/basil.svg,"Cut this morning — low stock",3

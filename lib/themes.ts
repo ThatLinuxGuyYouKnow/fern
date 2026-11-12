@@ -99,6 +99,22 @@ export const TEMPLATES: Preset[] = [
   },
   {
     id: "grid",
+    name: "Sunrise Market",
+    blurb: "Built for Sunrise Fresh Market — banner hero, compact price-forward grid, stock badges up front.",
+    tagline: "Fresh groceries & pantry staples",
+    vibe: "Restocked at dawn. Deep market green, sunrise amber, everything scannable in seconds.",
+    bestFor: ["Groceries", "Fresh food", "Pantry"],
+    theme: {
+      template: "grid",
+      primary: "#14532D",
+      accent: "#F59E0B",
+      heroTitle: "Fresh this morning, fair all day",
+      heroSubtitle: "Fruit, veg, bakery & pantry — restocked at sunrise",
+      style: { font: "sans", bg: "#F6F7E9", surface: "#FFFFFF", ink: "#1A2E1D", hero: "banner", card: "bordered", radius: "soft", density: "compact" },
+    },
+  },
+  {
+    id: "grid",
     name: "Neon Arcade",
     blurb: "Deep-space navy, mono labels, glowing cyan accents, tight grid.",
     tagline: "Gadgets & gaming gear",
@@ -187,7 +203,7 @@ const COLORS: Record<string, string> = {
 };
 
 const PRESET_MATCHES: { re: RegExp; name: string }[] = [
-  { re: /(groc|market|food|snack|pantry|variety|produce|farm)/, name: "Market Day" },
+  { re: /(groc|market|food|snack|pantry|variety|produce|farm|fresh)/, name: "Sunrise Market" },
   { re: /(streetwear|sneaker|fashion|drop|edgy|loud|hype)/, name: "Noir Drop" },
   { re: /(beauty|skincare|wellness|candle|soap|bath|perfume|cosmetic)/, name: "Rose Boutique" },
   { re: /(gadget|tech|gaming|gear|electronic|accessor)/, name: "Neon Arcade" },

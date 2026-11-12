@@ -7,6 +7,14 @@ const DEMO = [
   { img: "/mocks/prod_planter.png", n: "Clay Planter", p: "$34.00" },
 ];
 
+// Grocery previews (Sunrise Market / Market Day) show the demo listings from
+// demo/sunrise-fresh-market.csv — same products the live store ends up with.
+const MARKET_DEMO = [
+  { img: "/demo/market/tomatoes.svg", n: "Heirloom Tomatoes", p: "$4.99" },
+  { img: "/demo/market/eggs.svg", n: "Free-Range Eggs", p: "$6.50" },
+  { img: "/demo/market/sourdough.svg", n: "Sourdough Loaf", p: "$5.25" },
+];
+
 /**
  * Mini storefront rendered with a theme's real tokens (font, bg, hero and
  * card treatment) — used anywhere a preset is picked or previewed, so what
@@ -24,7 +32,8 @@ export default function TemplatePreview({
   const s = resolveStyle(theme);
   const radius = RADIUS[s.radius];
   const onPrimary = textOn(theme.primary);
-  const heroImg = DEMO[0].img;
+  const demo = s.density === "compact" && s.font === "sans" ? MARKET_DEMO : DEMO;
+  const heroImg = demo[0].img;
 
   const cardStyle: React.CSSProperties =
     s.card === "brutal"
@@ -88,7 +97,7 @@ export default function TemplatePreview({
 
       {/* products */}
       <div className={`grid grid-cols-3 px-3 pb-3 pt-2.5 ${s.density === "compact" ? "gap-1.5" : "gap-2"}`}>
-        {DEMO.map((p) => (
+        {demo.map((p) => (
           <div key={p.n} className="p-1.5" style={cardStyle}>
             <img src={p.img} alt="" className="h-9 w-full object-cover" style={{ borderRadius: s.card === "flat" ? 0 : radius }} />
             <p className="mt-1 truncate text-[9px] font-semibold">{p.n}</p>

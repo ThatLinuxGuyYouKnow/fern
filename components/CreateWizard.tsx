@@ -28,7 +28,7 @@ const STARTERS = [
   "Luxury eco scented goods, soft and premium",
 ];
 
-const ARCHETYPES = ["Verdant Atelier", "Market Day", "Noir Drop"].map((name) => {
+const ARCHETYPES = ["Verdant Atelier", "Sunrise Market", "Noir Drop"].map((name) => {
   const t = TEMPLATES.find((x) => x.name === name)!;
   return { name: t.name, meta: t.tagline, theme: t.theme };
 });

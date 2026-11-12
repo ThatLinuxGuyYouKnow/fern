@@ -40,8 +40,8 @@ export function validateCsvRecord(raw: Record<string, string>, line: number): { 
   if (!Number.isInteger(stock) || stock < 0)
     return { error: `line ${line} (${name}): stock must be a non-negative integer` };
   const image_url = (r.image_url ?? "").trim() || null;
-  if (image_url && !/^https?:\/\//.test(image_url))
-    return { error: `line ${line} (${name}): image_url must start with http(s)://` };
+  if (image_url && !/^(https?:\/\/|\/)/.test(image_url))
+    return { error: `line ${line} (${name}): image_url must start with http(s):// or /` };
   return {
     row: {
       name,
