@@ -14,7 +14,7 @@ set -euo pipefail
 : "${AWS_REGION:?set AWS_REGION}"
 : "${VPC_ID:?set VPC_ID}"
 : "${SUBNET_ID:?set SUBNET_ID}"
-: "${KEY_NAME:?set KEY_NAME}"
+: "${KEY_NAME:=}"   # optional — Session Manager doesn't need it
 : "${AMI_ID:?set AMI_ID}"
 : "${DOMAIN:?set DOMAIN}"
 : "${ACME_EMAIL:?set ACME_EMAIL}"
@@ -98,8 +98,10 @@ UD=$(mktemp)
 } > "$UD"
 
 say "4. launch instance"
+KEY_ARGS=()
+[ -n "$KEY_NAME" ] && KEY_ARGS=(--key-name "$KEY_NAME")
 INSTANCE_ID=$(aws ec2 run-instances \
-  --image-id "$AMI_ID" --instance-type "$INSTANCE_TYPE" --key-name "$KEY_NAME" \
+  --image-id "$AMI_ID" --instance-type "$INSTANCE_TYPE" "${KEY_ARGS[@]+"${KEY_ARGS[@]}"}" \
   --subnet-id "$SUBNET_ID" --security-group-ids "$SG_ID" --associate-public-ip-address \
   --iam-instance-profile Name="$PROFILE_NAME" \
   --user-data "file://$UD" \
