@@ -27,10 +27,10 @@ const FEATURES = [
 
 export default function Landing() {
   return (
-    <main className="min-h-screen bg-[#faf9f6] text-neutral-900">
-      <header className="sticky top-0 z-10 border-b bg-[#faf9f6]/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <span className="text-2xl font-bold" style={{ color: GREEN }}>fern</span>
+    <main className="min-h-screen text-fernink">
+      <header className="sticky top-0 z-10 border-b border-[#dde6cf]/80 bg-[#f6f8f0]/85 backdrop-blur-md">
+        <div className="mx-auto flex w-full max-w-[1440px] items-center justify-between px-6 py-4">
+          <span className="font-display text-[26px] font-semibold tracking-tight text-fern-800">fern</span>
           <nav className="hidden items-center gap-6 text-sm text-neutral-600 md:flex">
             <a href="#how" className="hover:text-neutral-900">How it works</a>
             <a href="#templates" className="hover:text-neutral-900">Templates</a>
@@ -44,12 +44,12 @@ export default function Landing() {
       </header>
 
       {/* Hero */}
-      <section className="mx-auto grid max-w-6xl gap-12 px-6 pb-16 pt-14 md:grid-cols-2 md:items-center">
+      <section className="mx-auto grid w-full max-w-[1440px] gap-12 px-6 pb-16 pt-14 md:grid-cols-2 md:items-center">
         <div>
           <span className="rounded-full border bg-white px-3 py-1 text-xs font-semibold" style={{ color: GREEN }}>
             Free subdomain · PayPal checkout · No code
           </span>
-          <h1 className="mt-5 text-5xl font-bold leading-[1.05] tracking-tight">
+          <h1 className="mt-5 font-display text-5xl font-semibold leading-[1.02] tracking-tight text-fern-950 sm:text-6xl">
             Your store,<br />your way.
           </h1>
           <p className="mt-4 max-w-md text-lg text-neutral-600">
@@ -99,7 +99,7 @@ export default function Landing() {
       </section>
 
       {/* Ways to start */}
-      <section className="mx-auto max-w-6xl px-6 pb-16">
+      <section className="mx-auto w-full max-w-[1440px] px-6 pb-16">
         <div className="grid gap-4 md:grid-cols-3">
           {MODES.map((m) => (
             <Link key={m.mode} href={`/create?mode=${m.mode}`} className="group rounded-2xl border bg-white p-5 transition hover:shadow-md">
@@ -114,11 +114,11 @@ export default function Landing() {
 
       {/* How it works */}
       <section id="how" className="border-y bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <h2 className="text-3xl font-bold tracking-tight">How it works</h2>
+        <div className="mx-auto w-full max-w-[1440px] px-6 py-16">
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-fern-950 sm:text-4xl">How it works</h2>
           <div className="mt-8 grid gap-4 md:grid-cols-3">
             {STEPS.map((s) => (
-              <div key={s.n} className="rounded-2xl bg-[#faf9f6] p-5">
+              <div key={s.n} className="rounded-2xl bg-fern-50 p-5">
                 <span className="flex h-8 w-8 items-center justify-center rounded-full text-sm font-bold text-white" style={{ background: GREEN }}>{s.n}</span>
                 <h3 className="mt-3 font-bold">{s.t}</h3>
                 <p className="mt-1 text-sm text-neutral-600">{s.s}</p>
@@ -129,10 +129,10 @@ export default function Landing() {
       </section>
 
       {/* Templates */}
-      <section id="templates" className="mx-auto max-w-6xl px-6 py-16">
+      <section id="templates" className="mx-auto w-full max-w-[1440px] px-6 py-16">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h2 className="text-3xl font-bold tracking-tight">Start from a template</h2>
+            <h2 className="font-display text-3xl font-semibold tracking-tight text-fern-950 sm:text-4xl">Start from a template</h2>
             <p className="mt-1 text-neutral-600">Pick one in the wizard, tweak the colours, launch. Switch anytime.</p>
           </div>
           <Link href="/create?mode=templates" className="text-sm font-semibold hover:underline" style={{ color: GREEN }}>Browse in the wizard →</Link>
@@ -159,8 +159,8 @@ export default function Landing() {
 
       {/* Features */}
       <section id="features" className="border-y bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-16">
-          <h2 className="text-3xl font-bold tracking-tight">Everything included</h2>
+        <div className="mx-auto w-full max-w-[1440px] px-6 py-16">
+          <h2 className="font-display text-3xl font-semibold tracking-tight text-fern-950 sm:text-4xl">Everything included</h2>
           <div className="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
             {FEATURES.map((f) => (
               <div key={f.t}>
@@ -173,8 +173,8 @@ export default function Landing() {
       </section>
 
       {/* Final CTA */}
-      <section className="mx-auto max-w-6xl px-6 py-16 text-center">
-        <h2 className="text-3xl font-bold tracking-tight">Your store could be live in a minute.</h2>
+      <section className="mx-auto w-full max-w-[1440px] px-6 py-16 text-center">
+        <h2 className="font-display text-3xl font-semibold tracking-tight text-fern-950 sm:text-4xl">Your store could be live in a minute.</h2>
         <p className="mx-auto mt-2 max-w-md text-neutral-600">Start with Quick Start, restyle it later. Nothing to install, nothing to host.</p>
         <Link href="/create?mode=quickstart" className="mt-6 inline-block rounded-full px-7 py-3 text-sm font-semibold text-white" style={{ background: GREEN }}>
           Create your store →
@@ -182,8 +182,8 @@ export default function Landing() {
       </section>
 
       <footer className="border-t">
-        <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-6 text-sm text-neutral-500">
-          <span className="font-bold" style={{ color: GREEN }}>fern</span>
+        <div className="mx-auto flex w-full max-w-[1440px] flex-wrap items-center justify-between gap-3 px-6 py-6 text-sm text-neutral-500">
+          <span className="font-display text-lg font-semibold text-fern-800">fern</span>
           <span>Instant storefronts with PayPal checkout — also shoppable by AI agents via MCP.</span>
           <span className="flex gap-4">
             <Link href="/admin" className="font-semibold hover:underline" style={{ color: GREEN }}>Manage a store</Link>

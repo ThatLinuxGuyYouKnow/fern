@@ -14,9 +14,7 @@ import type { ThemeJson } from "@/lib/supabase";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
 
-const GREEN = "#1e6b3f";
-const CREAM = "#faf9f6";
-const MINT = "#edf4ec";
+const CARD = "fern-card p-5 sm:p-6";
 
 type Tab = "home" | "products" | "orders" | "settings" | "soon";
 
@@ -89,71 +87,79 @@ export default function AdminPage({ params }: { params: { slug: string } }) {
   ];
 
   if (error && !store)
-    return <main className="mx-auto max-w-3xl px-6 py-12"><p className="text-red-600">{error}</p></main>;
+    return <main className="mx-auto max-w-3xl px-6 py-12"><p className="font-medium text-red-700">{error}</p></main>;
 
   return (
-    <div className="flex min-h-screen text-neutral-900" style={{ background: CREAM }}>
-      {/* Sidebar */}
-      <aside className="hidden w-60 shrink-0 flex-col border-r border-neutral-200 bg-white md:flex">
-        <a href="/" className="flex items-center gap-2 px-6 pb-1 pt-6 text-2xl font-bold" style={{ color: GREEN }}>
-          <svg width="26" height="26" viewBox="0 0 24 24" fill={GREEN}><path d="M12 2C7 7 4 11 4 15a8 8 0 0 0 16 0c0-4-3-8-8-13zm0 18a6 6 0 0 1-6-6c0-.5.1-1 .2-1.5C8 14 10 16 12 20c2-4 4-6 5.8-7.5.1.5.2 1 .2 1.5a6 6 0 0 1-6 6z" /></svg>
+    <div className="flex min-h-screen text-fernink">
+      {/* Sidebar — deep fern panel, sticky full height */}
+      <aside className="sticky top-0 hidden h-screen w-[272px] shrink-0 flex-col bg-gradient-to-b from-[#0e3520] via-ferndeep to-[#071c10] text-white md:flex">
+        <a href="/" className="flex items-center gap-2.5 px-6 pb-1 pt-7 font-display text-[28px] font-semibold leading-none tracking-tight">
+          <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-fern-200 text-ferndeep shadow-glow">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C7 7 4 11 4 15a8 8 0 0 0 16 0c0-4-3-8-8-13zm0 18a6 6 0 0 1-6-6c0-.5.1-1 .2-1.5C8 14 10 16 12 20c2-4 4-6 5.8-7.5.1.5.2 1 .2 1.5a6 6 0 0 1-6 6z" /></svg>
+          </span>
           fern
         </a>
-        <a href="/admin" className="px-6 pb-5 text-xs text-neutral-500 hover:underline">← All stores</a>
-        <nav className="flex-1 space-y-1 px-3">
+        <a href="/admin" className="px-6 pb-6 pt-2 text-xs font-medium text-white/50 transition hover:text-white">← All stores</a>
+        <nav className="flex-1 space-y-1 overflow-y-auto px-3.5">
           {nav.map((n) => {
             const active = tab === n.id;
-            const cls = `flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm ${active ? "font-semibold" : "text-neutral-600 hover:bg-neutral-100"}`;
-            const style = active ? { background: MINT, color: GREEN } : {};
-            const icon = ICONS[n.id] ?? ICONS.home;
+            const cls = `flex w-full items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm transition ${active ? "bg-white/[0.13] font-semibold text-white shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)]" : "text-white/65 hover:bg-white/[0.06] hover:text-white"}`;
+            const icon = <span className={active ? "text-fern-200" : "text-white/45"}>{ICONS[n.id] ?? ICONS.home}</span>;
             if (n.id === "storefront")
-              return <a key="storefront" href={storeUrl} target="_blank" className={cls} style={style}>{icon}{n.label}</a>;
-            return <button key={n.id} onClick={() => setTab(n.id as Tab)} className={cls} style={style}>{icon}{n.label}</button>;
+              return <a key="storefront" href={storeUrl} target="_blank" className={cls}>{icon}{n.label}<span className="ml-auto text-[10px] text-white/40">↗</span></a>;
+            return <button key={n.id} onClick={() => setTab(n.id as Tab)} className={cls}>{icon}{n.label}{active && <span className="ml-auto h-1.5 w-1.5 rounded-full bg-fern-200" />}</button>;
           })}
-          <p className="px-3 pb-1 pt-4 text-[11px] uppercase tracking-wider text-neutral-400">Coming soon</p>
+          <p className="px-3.5 pb-1.5 pt-6 text-[10px] font-bold uppercase tracking-[0.14em] text-white/35">Coming soon</p>
           {navSoon.map((n) => (
-            <span key={n.label} className="flex items-center gap-3 rounded-lg px-3 py-2 text-sm text-neutral-400">
-              {ICONS[n.label.toLowerCase()]}{n.label}
+            <span key={n.label} className="flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm text-white/35">
+              <span className="text-white/30">{ICONS[n.label.toLowerCase()]}</span>{n.label}
             </span>
           ))}
         </nav>
+        <div className="p-4">
+          <div className="rounded-2xl border border-white/10 bg-white/[0.07] p-4">
+            <p className="flex items-center gap-2 text-xs font-semibold"><span className="h-2 w-2 animate-pulse rounded-full bg-emerald-300" /> Store is live</p>
+            <a href={storeUrl} target="_blank" className="mt-1 block truncate text-xs text-white/55 underline-offset-2 hover:underline">{subUrl.replace(/^https?:\/\//, "")}</a>
+          </div>
+        </div>
       </aside>
 
-      {/* Main column */}
+      {/* Main column — fluid width, no centred max-w gutter */}
       <div className="min-w-0 flex-1">
         {/* Topbar */}
-        <header className="flex items-center gap-4 border-b border-neutral-200 bg-white px-6 py-3">
-          <div className="flex max-w-xl flex-1 items-center gap-2 rounded-full bg-neutral-100 px-4 py-2">
-            <span className="text-neutral-400">{ICONS.search}</span>
+        <header className="sticky top-0 z-20 flex items-center gap-3 border-b border-[#dde6cf]/80 bg-[#f6f8f0]/85 px-4 py-3 backdrop-blur-md sm:px-6 lg:px-10">
+          <div className="flex max-w-2xl flex-1 items-center gap-2.5 rounded-full border border-[#d8e2c6] bg-white px-4 py-2.5 shadow-sm transition focus-within:border-fern-800/50 focus-within:ring-4 focus-within:ring-fern-800/10">
+            <span className="text-[#8a9a7d]">{ICONS.search}</span>
             <input value={query} onChange={(e) => setQuery(e.target.value)}
               onKeyDown={(e) => { if (e.key === "Enter") setTab("products"); }}
               placeholder="Search everything in Fern…"
-              className="w-full bg-transparent text-sm outline-none" />
+              className="w-full bg-transparent text-sm outline-none placeholder:text-neutral-400" />
+            {query && <button onClick={() => setQuery("")} className="text-xs font-semibold text-fern-800 hover:underline">Clear</button>}
           </div>
-          <div className="ml-auto flex items-center gap-3">
-            <button className="text-neutral-500">{ICONS.bell}</button>
-            <span className="flex h-8 w-8 items-center justify-center rounded-full text-xs font-bold text-white" style={{ background: GREEN }}>
+          <div className="ml-auto flex items-center gap-2.5 sm:gap-3">
+            <a href={storeUrl} target="_blank" className="fern-btn-ghost hidden !px-4 !py-2 text-xs lg:inline-flex"><span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> View store</a>
+            <button aria-label="Notifications" className="flex h-9 w-9 items-center justify-center rounded-full border border-[#d8e2c6] bg-white text-[#5b6b58] shadow-sm transition hover:text-fern-800">{ICONS.bell}</button>
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-br from-fern-800 to-fern-950 text-xs font-bold text-white shadow-glow">
               {(store?.name ?? slug).slice(0, 2).toUpperCase()}
             </span>
-            <span className="hidden text-sm font-medium sm:block">{store?.name ?? slug}</span>
+            <span className="hidden text-sm font-semibold sm:block">{store?.name ?? slug}</span>
           </div>
         </header>
 
         {/* Mobile nav */}
-        <nav className="flex gap-2 overflow-x-auto border-b border-neutral-200 bg-white px-4 py-2 md:hidden">
+        <nav className="flex gap-2 overflow-x-auto border-b border-[#dde6cf] bg-white/70 px-4 py-2.5 backdrop-blur md:hidden">
           {(["home", "products", "orders", "settings"] as Tab[]).map((t) => (
             <button key={t} onClick={() => setTab(t)}
-              className={`rounded-full px-4 py-1.5 text-sm capitalize ${tab === t ? "font-semibold text-white" : "bg-neutral-100"}`}
-              style={tab === t ? { background: GREEN } : {}}>
+              className={`rounded-full px-4 py-1.5 text-sm capitalize ${tab === t ? "bg-fern-800 font-semibold text-white shadow-glow" : "border border-[#d8e2c6] bg-white"}`}>
               {t}
             </button>
           ))}
-          <a href={storeUrl} target="_blank" className="rounded-full bg-neutral-100 px-4 py-1.5 text-sm">Storefront</a>
+          <a href={storeUrl} target="_blank" className="rounded-full border border-[#d8e2c6] bg-white px-4 py-1.5 text-sm">Storefront</a>
         </nav>
 
-        <main className="mx-auto max-w-6xl px-6 py-8">
-          {error && <div className="mb-4 rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700">{error}</div>}
-          {notice && <div className="mb-4 rounded border border-green-300 bg-green-50 p-3 text-sm text-green-800">{notice}</div>}
+        <main className="w-full px-4 py-6 sm:px-6 lg:px-10 lg:py-9">
+          {error && <div className="mb-5 flex gap-2.5 rounded-2xl border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-800 shadow-sm"><span aria-hidden>⚠</span>{error}</div>}
+          {notice && <div className="mb-5 flex gap-2.5 rounded-2xl border border-fern-800/25 bg-fern-50 px-4 py-3 text-sm font-medium text-fern-900 shadow-sm"><span className="text-fern-800">{ICONS.check}</span>{notice}</div>}
 
           {tab === "home" && store && (
             <Overview
@@ -172,8 +178,8 @@ export default function AdminPage({ params }: { params: { slug: string } }) {
             <SettingsTab store={store} subUrl={subUrl} reload={load} notify={setNotice} fail={setError} />
           )}
           {tab === "soon" && (
-            <div className="rounded-xl border bg-white p-12 text-center text-neutral-500">
-              <p className="text-lg font-semibold text-neutral-700">Coming soon</p>
+            <div className="fern-card p-12 text-center text-neutral-500">
+              <p className="font-display text-2xl font-semibold text-fernink">Coming soon</p>
               <p className="mt-1 text-sm">This section is on the roadmap — Products, Orders and Settings are live today.</p>
             </div>
           )}
@@ -211,76 +217,81 @@ function Overview({ store, products, orders, storeUrl, subUrl, paypalLive, paidT
   ];
 
   return (
-    <div className="grid gap-6 lg:grid-cols-3">
-      <div className="space-y-6 lg:col-span-2">
-        <div className="grid gap-6 md:grid-cols-2">
-          <div>
-            <p className="text-sm text-neutral-600">Welcome back, {store.name}</p>
-            <h1 className="mt-1 text-4xl font-bold">Your store, your way.</h1>
-            <p className="mt-2 text-sm text-neutral-500">Build, customize, and launch your online store — all in one place.</p>
-            <div className="mt-4 flex gap-3">
-              <button onClick={() => go("settings")} className="rounded-full px-5 py-2.5 text-sm font-semibold text-white" style={{ background: GREEN }}>
-                Customize your store →
-              </button>
-              <a href={storeUrl} target="_blank" className="rounded-full border bg-white px-5 py-2.5 text-sm font-medium">View store</a>
+    <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_360px]">
+      <div className="min-w-0 space-y-6">
+        <div className="grid items-stretch gap-6 lg:grid-cols-[minmax(0,1.15fr)_minmax(280px,0.85fr)]">
+          <div className="flex flex-col justify-center py-2">
+            <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-fern-800"><span className="h-1.5 w-1.5 rounded-full bg-fern-800" /> Welcome back, {store.name}</p>
+            <h1 className="mt-3 font-display text-[42px] font-semibold leading-[1.04] tracking-tight text-fern-950 sm:text-5xl">Your store,<br />your way.</h1>
+            <p className="mt-3 max-w-md text-[15px] leading-relaxed text-[#5b6b58]">Build, customize, and launch your online store — all in one place.</p>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <button onClick={() => go("settings")} className="fern-btn-primary !px-6 !py-3">Customize your store →</button>
+              <a href={storeUrl} target="_blank" className="fern-btn-ghost !px-6 !py-3">View store</a>
+            </div>
+            <div className="mt-7 flex flex-wrap gap-x-7 gap-y-2 text-sm">
+              <span><strong className="tnum font-display text-xl font-semibold text-fern-950">{products.length}</strong> <span className="text-[#5b6b58]">products</span></span>
+              <span><strong className="tnum font-display text-xl font-semibold text-fern-950">{orders.length}</strong> <span className="text-[#5b6b58]">orders</span></span>
+              <span><strong className="tnum font-display text-xl font-semibold text-fern-950">${dollars(paidTotal)}</strong> <span className="text-[#5b6b58]">paid out</span></span>
             </div>
           </div>
-          <div className="rounded-xl p-5" style={{ background: MINT }}>
-            <p className="text-sm font-semibold">Your store is ready!</p>
-            <a href={storeUrl} target="_blank" className="text-xs underline" style={{ color: GREEN }}>{subUrl.replace(/^https?:\/\//, "")} ⧉</a>
-            <ul className="mt-3 space-y-2 border-t border-green-900/10 pt-3 text-sm">
+          <div className="rounded-[20px] border border-fern-800/15 bg-gradient-to-br from-fern-100 via-[#f2f7e7] to-cream p-6 shadow-card">
+            <p className="font-jakarta text-[15px] font-bold text-fern-950">Your store is ready!</p>
+            <a href={storeUrl} target="_blank" className="mt-0.5 inline-block break-all text-xs font-medium text-fern-800 underline decoration-fern-800/30 underline-offset-2 hover:decoration-fern-800">{subUrl.replace(/^https?:\/\//, "")} ⧉</a>
+            <ul className="mt-4 space-y-2.5 border-t border-fern-900/10 pt-4 text-sm">
               {checks.map((c) => (
-                <li key={c.label} className="flex items-center gap-2">
-                  <span style={{ color: c.done ? GREEN : "#a3a3a3" }}>{ICONS.check}</span>{c.label}
+                <li key={c.label} className="flex items-center gap-2.5">
+                  <span className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${c.done ? "bg-fern-800 text-white" : "bg-black/10 text-white"}`}><span className="[&>svg]:h-3 [&>svg]:w-3">{ICONS.check}</span></span><span className={c.done ? "text-fern-950" : "text-neutral-500"}>{c.label}</span>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="rounded-xl border bg-white p-5">
-          <div className="flex items-center justify-between">
-            <h2 className="font-semibold">Your storefront</h2>
-            <div className="flex items-center gap-2">
-              <button onClick={() => go("settings")} className="rounded-full border px-4 py-1.5 text-sm">Edit theme</button>
+        <div className={CARD}>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h2 className="font-jakarta text-base font-bold text-fern-950">Your storefront</h2>
+              <p className="text-xs text-[#7a8a72]">Live preview — exactly what customers see</p>
             </div>
+            <button onClick={() => go("settings")} className="fern-btn-ghost !px-4 !py-2 text-xs">Edit theme</button>
           </div>
-          <div className="mt-3 overflow-hidden rounded-lg border bg-neutral-50">
-            <iframe title="storefront preview" src={storeUrl} className="h-[420px] w-full bg-white" loading="lazy" />
+          <div className="mt-4 overflow-hidden rounded-2xl border border-[#e0e8d0] bg-neutral-50 shadow-inner">
+            <iframe title="storefront preview" src={storeUrl} className="h-[480px] w-full bg-white" loading="lazy" />
           </div>
         </div>
       </div>
 
       <div className="space-y-6">
-        <div className="rounded-xl border bg-white p-5">
-          <h3 className="text-sm font-semibold">Quick actions</h3>
-          <div className="mt-3 space-y-2">
+        <div className={CARD}>
+          <h3 className="font-jakarta text-sm font-bold text-fern-950">Quick actions</h3>
+          <div className="mt-3.5 space-y-2">
             {quick.map((q) => (
-              <button key={q.title} onClick={q.fn} className="flex w-full items-center gap-3 rounded-lg border p-3 text-left hover:bg-neutral-50">
-                <span className="rounded-full p-2" style={{ background: MINT, color: GREEN }}>{q.icon}</span>
-                <span><span className="block text-sm font-medium">{q.title}</span><span className="block text-xs text-neutral-500">{q.sub}</span></span>
+              <button key={q.title} onClick={q.fn} className="group flex w-full items-center gap-3 rounded-2xl border border-[#e6edda] p-3.5 text-left transition hover:border-fern-800/35 hover:bg-fern-50 hover:shadow-card">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-fern-100 text-fern-800 transition group-hover:bg-fern-800 group-hover:text-white">{q.icon}</span>
+                <span className="min-w-0"><span className="block text-sm font-semibold text-fern-950">{q.title}</span><span className="block truncate text-xs text-[#7a8a72]">{q.sub}</span></span>
+                <span className="ml-auto text-neutral-300 transition group-hover:translate-x-0.5 group-hover:text-fern-800">→</span>
               </button>
             ))}
           </div>
         </div>
-        <div className="rounded-xl border bg-white p-5">
+        <div className={CARD}>
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold">Recent activity</h3>
-            <button onClick={() => go("orders")} className="text-xs" style={{ color: GREEN }}>View all →</button>
+            <h3 className="font-jakarta text-sm font-bold text-fern-950">Recent activity</h3>
+            <button onClick={() => go("orders")} className="text-xs font-semibold text-fern-800 hover:underline">View all →</button>
           </div>
-          <ul className="mt-3 space-y-3">
+          <ul className="mt-2 divide-y divide-[#eef2e2]">
             {activity.map((a, i) => (
-              <li key={i} className="flex items-center gap-3 text-sm">
-                <span className="rounded-full bg-neutral-100 p-2 text-neutral-500">{ICONS.orders}</span>
-                <span><span className="block font-medium">{a.title}</span><span className="block text-xs text-neutral-500">{a.sub}</span></span>
+              <li key={i} className="flex items-center gap-3 py-3 text-sm">
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-fern-50 text-fern-800">{ICONS.orders}</span>
+                <span className="min-w-0"><span className="block truncate font-medium text-fern-950">{a.title}</span><span className="block truncate text-xs text-[#7a8a72]">{a.sub}</span></span>
               </li>
             ))}
           </ul>
         </div>
-        <div className="rounded-xl p-5" style={{ background: MINT }}>
-          <p className="text-sm font-semibold">Need help?</p>
-          <p className="mt-1 text-xs text-neutral-600">CSV template, PayPal sandbox, and agent shopping docs are in the README.</p>
-          <a href="/api/csv-template" className="mt-3 inline-block rounded-full border px-4 py-1.5 text-xs font-medium" style={{ borderColor: GREEN, color: GREEN }}>
+        <div className="rounded-[20px] bg-gradient-to-br from-fern-900 to-fern-950 p-6 text-white shadow-lift">
+          <p className="font-jakarta text-sm font-bold">Need help?</p>
+          <p className="mt-1.5 text-[13px] leading-relaxed text-white/65">CSV template, PayPal sandbox, and agent shopping docs are in the README.</p>
+          <a href="/api/csv-template" className="mt-4 inline-block rounded-full bg-fern-200 px-4 py-2 text-xs font-bold text-fern-950 transition hover:bg-white">
             Get stock template
           </a>
         </div>
@@ -310,10 +321,11 @@ function ProductsTab({ store, products, query, reload, notify, fail }: {
   useEffect(() => { gridApi?.setGridOption?.("quickFilterText", query); }, [query, gridApi]);
 
   const cols = useMemo<ColDef<Product>[]>(() => [
-    { field: "name", flex: 2, filter: true, sortable: true },
-    { headerName: "Price", valueGetter: (p) => (p.data ? `$${dollars(p.data.price_cents)}` : ""), width: 110, sortable: true },
-    { field: "stock", width: 100, sortable: true },
-    { field: "description", flex: 2, filter: true },
+    { field: "name", headerName: "Name", flex: 2, minWidth: 180, filter: true, sortable: true, cellClass: "font-medium" },
+    { headerName: "Price", valueGetter: (p) => (p.data ? `$${dollars(p.data.price_cents)}` : ""), width: 120, sortable: true, cellClass: "tnum font-semibold" },
+    { field: "stock", headerName: "Stock", width: 110, sortable: true, cellClass: "tnum",
+      cellStyle: (p) => (typeof p.value === "number" && p.value <= 5 ? { color: "#b45309", fontWeight: 700 } : undefined) },
+    { field: "description", headerName: "Description", flex: 3, minWidth: 220, filter: true, cellClass: "text-neutral-500" },
   ], []);
 
   async function uploadImage(f: File): Promise<string> {
@@ -381,53 +393,67 @@ function ProductsTab({ store, products, query, reload, notify, fail }: {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-3">
-      <div className="space-y-6 lg:col-span-2">
-        <div className="rounded-xl border bg-white p-5">
-          <h2 className="font-semibold">Products ({products.length})</h2>
-          <div className="ag-theme-quartz mt-3" style={{ height: 380 }}>
+    <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1fr)_380px]">
+      <div className="min-w-0 space-y-6">
+        <div className={CARD}>
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <div>
+              <h1 className="font-display text-[26px] font-semibold leading-tight text-fern-950">Products <span className="tnum ml-1 align-middle font-sans text-xs font-bold text-fern-800 bg-fern-100 rounded-full px-2.5 py-1">{products.length}</span></h1>
+              <p className="mt-0.5 text-xs text-[#7a8a72]">Select a row to manage it · low stock (≤5) is highlighted</p>
+            </div>
+            <button
+              onClick={async () => {
+                if (!selectedId) return;
+                await fetch(`/api/products?id=${selectedId}`, { method: "DELETE" });
+                setSelectedId(null); notify("Product deleted"); reload();
+              }}
+              disabled={!selectedId}
+              className="rounded-full border border-red-200 bg-red-50/60 px-4 py-2 text-xs font-semibold text-red-700 transition hover:bg-red-50 disabled:cursor-not-allowed disabled:opacity-40">
+              Delete selected
+            </button>
+          </div>
+          <div className="ag-theme-quartz mt-4" style={{ height: 520 }}>
             <AgGridReact<Product>
               rowData={products} columnDefs={cols} rowSelection="single"
               onGridReady={(e) => { setGridApi(e.api); e.api.setGridOption("quickFilterText", query); }}
               onSelectionChanged={(e) => setSelectedId(e.api.getSelectedRows()[0]?.id ?? null)}
             />
           </div>
-          <button
-            onClick={async () => {
-              if (!selectedId) return;
-              await fetch(`/api/products?id=${selectedId}`, { method: "DELETE" });
-              setSelectedId(null); notify("Product deleted"); reload();
-            }}
-            disabled={!selectedId}
-            className="mt-3 rounded-full border border-red-300 px-4 py-1.5 text-sm text-red-600 disabled:opacity-40">
-            Delete selected
-          </button>
+          {products.length === 0 && <p className="mt-3 text-sm text-neutral-500">No products yet — add your first one on the right, or bulk-import below.</p>}
         </div>
-        <div className="rounded-xl border bg-white p-5">
-          <h2 className="font-semibold">Bulk import via CSV</h2>
-          <p className="mt-1 text-sm text-neutral-600">
-            <a href="/api/csv-template" className="underline" style={{ color: GREEN }}>Download the template CSV</a>, fill it with your stock, then upload it here.
+        <div className={CARD}>
+          <h2 className="font-jakarta text-base font-bold text-fern-950">Bulk import via CSV</h2>
+          <p className="mt-1 text-sm leading-relaxed text-[#5b6b58]">
+            <a href="/api/csv-template" className="font-semibold text-fern-800 underline decoration-fern-800/30 underline-offset-2 hover:decoration-fern-800">Download the template CSV</a>, fill it with your stock, then upload it here.
           </p>
-          <input type="file" accept=".csv" disabled={csvBusy} className="mt-3 text-sm disabled:opacity-50"
-            onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ""; if (f) handleCsv(f); }} />
-          {csvBusy && <p className="mt-2 text-sm text-neutral-500">Importing…</p>}
-          {csvReport && <ul className="mt-3 rounded bg-neutral-50 p-3 text-sm">{csvReport.map((r, i) => <li key={i}>{r}</li>)}</ul>}
+          <div className="mt-4 rounded-2xl border border-dashed border-[#b9cda0] bg-fern-50/60 px-4 py-4">
+            <input type="file" accept=".csv" disabled={csvBusy} className="fern-file"
+              onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ""; if (f) handleCsv(f); }} />
+          </div>
+          {csvBusy && <p className="mt-3 text-sm text-neutral-500">Importing…</p>}
+          {csvReport && <ul className="mt-3 space-y-1 rounded-2xl bg-fern-50 px-4 py-3 text-sm text-fern-950">{csvReport.map((r, i) => <li key={i}>{r}</li>)}</ul>}
         </div>
       </div>
-      <div className="rounded-xl border bg-white p-5">
-        <h2 className="font-semibold">Add a product</h2>
-        <div className="mt-3 space-y-3">
-          <input value={pName} onChange={(e) => setPName(e.target.value)} placeholder="Name" className="w-full rounded border px-3 py-2 text-sm" />
-          <input value={pPrice} onChange={(e) => setPPrice(e.target.value)} placeholder="Price (e.g. 12.50)" inputMode="decimal" className="w-full rounded border px-3 py-2 text-sm" />
-          <input value={pImg} onChange={(e) => setPImg(e.target.value)} placeholder="Image URL (or upload →)" className="w-full rounded border px-3 py-2 text-sm" />
-          <input type="file" accept="image/*" className="text-sm" onChange={async (e) => {
-            const f = e.target.files?.[0]; if (!f) return;
-            try { setPImg(await uploadImage(f)); } catch (err) { fail(err instanceof Error ? err.message : "upload failed"); }
-          }} />
-          {pImg && <img src={pImg} alt="" className="h-16 w-16 rounded border object-cover" />}
-          <input value={pDesc} onChange={(e) => setPDesc(e.target.value)} placeholder="Description" className="w-full rounded border px-3 py-2 text-sm" />
-          <input value={pStock} onChange={(e) => setPStock(e.target.value)} placeholder="Stock" inputMode="numeric" className="w-full rounded border px-3 py-2 text-sm" />
-          <button onClick={addProduct} disabled={saving} className="w-full rounded-full px-4 py-2.5 text-sm font-semibold text-white disabled:opacity-50" style={{ background: GREEN }}>
+      <div className={`${CARD} xl:sticky xl:top-24`}>
+        <h2 className="font-jakarta text-base font-bold text-fern-950">Add a product</h2>
+        <p className="mt-0.5 text-xs text-[#7a8a72]">It goes live on your storefront instantly.</p>
+        <div className="mt-4 space-y-3.5">
+          <div><label className="fern-label" htmlFor="p-name">Name</label><input id="p-name" value={pName} onChange={(e) => setPName(e.target.value)} placeholder="e.g. Shea Butter 250g" className="fern-input" /></div>
+          <div className="grid grid-cols-2 gap-3">
+            <div><label className="fern-label" htmlFor="p-price">Price (USD)</label><input id="p-price" value={pPrice} onChange={(e) => setPPrice(e.target.value)} placeholder="12.50" inputMode="decimal" className="fern-input tnum" /></div>
+            <div><label className="fern-label" htmlFor="p-stock">Stock</label><input id="p-stock" value={pStock} onChange={(e) => setPStock(e.target.value)} placeholder="10" inputMode="numeric" className="fern-input tnum" /></div>
+          </div>
+          <div><label className="fern-label" htmlFor="p-desc">Description</label><textarea id="p-desc" value={pDesc} onChange={(e) => setPDesc(e.target.value)} placeholder="What makes it special?" rows={3} className="fern-input resize-none" /></div>
+          <div>
+            <label className="fern-label" htmlFor="p-img">Image URL</label>
+            <input id="p-img" value={pImg} onChange={(e) => setPImg(e.target.value)} placeholder="https://… (or upload below)" className="fern-input" />
+            <input type="file" accept="image/*" className="fern-file mt-2.5" onChange={async (e) => {
+              const f = e.target.files?.[0]; if (!f) return;
+              try { setPImg(await uploadImage(f)); } catch (err) { fail(err instanceof Error ? err.message : "upload failed"); }
+            }} />
+            {pImg && <img src={pImg} alt="" className="mt-3 h-36 w-full rounded-2xl border border-[#e0e8d0] object-cover" />}
+          </div>
+          <button onClick={addProduct} disabled={saving} className="fern-btn-primary w-full !py-3">
             {saving ? "Saving…" : "Add product"}
           </button>
         </div>
@@ -440,26 +466,31 @@ function ProductsTab({ store, products, query, reload, notify, fail }: {
 
 function OrdersTab({ orders, paidTotal }: { orders: Order[]; paidTotal: number }) {
   const cols = useMemo<ColDef<Order>[]>(() => [
-    { field: "status", width: 110, filter: true, sortable: true },
-    { headerName: "Total", valueGetter: (p) => (p.data ? `$${dollars(p.data.total_cents)} ${p.data.currency}` : ""), width: 130, sortable: true },
-    { headerName: "Items", valueGetter: (p) => (p.data ? p.data.items.map((i) => `${i.name}×${i.qty}`).join(", ") : ""), flex: 2 },
-    { headerName: "When", valueGetter: (p) => (p.data ? new Date(p.data.created_at).toLocaleString() : ""), width: 200, sortable: true },
+    { field: "status", headerName: "Status", width: 130, filter: true, sortable: true, cellClass: "font-semibold capitalize" },
+    { headerName: "Total", valueGetter: (p) => (p.data ? `$${dollars(p.data.total_cents)} ${p.data.currency}` : ""), width: 150, sortable: true, cellClass: "tnum font-semibold" },
+    { headerName: "Items", valueGetter: (p) => (p.data ? p.data.items.map((i) => `${i.name}×${i.qty}`).join(", ") : ""), flex: 2, minWidth: 220, cellClass: "text-neutral-500" },
+    { headerName: "When", valueGetter: (p) => (p.data ? new Date(p.data.created_at).toLocaleString() : ""), width: 210, sortable: true, cellClass: "tnum text-neutral-500" },
   ], []);
   return (
     <div className="space-y-6">
+      <div>
+        <h1 className="font-display text-[26px] font-semibold text-fern-950">Orders</h1>
+        <p className="mt-0.5 text-sm text-[#7a8a72]">Revenue and fulfilment at a glance.</p>
+      </div>
       <div className="grid gap-4 sm:grid-cols-3">
-        {[["Revenue (paid)", `$${dollars(paidTotal)}`], ["Orders", String(orders.length)], ["Paid", String(orders.filter((o) => o.status === "paid").length)]].map(([k, v]) => (
-          <div key={k} className="rounded-xl border bg-white p-5">
-            <p className="text-xs uppercase tracking-wider text-neutral-500">{k}</p>
-            <p className="mt-1 text-2xl font-bold">{v}</p>
+        {[["Revenue (paid)", `$${dollars(paidTotal)}`], ["Orders", String(orders.length)], ["Paid", String(orders.filter((o) => o.status === "paid").length)]].map(([k, v], i) => (
+          <div key={k} className={i === 0 ? "rounded-[20px] bg-gradient-to-br from-fern-900 to-fern-950 p-6 text-white shadow-lift" : `${CARD}`}>
+            <p className={`text-[11px] font-bold uppercase tracking-[0.12em] ${i === 0 ? "text-white/55" : "text-[#7a8a72]"}`}>{k}</p>
+            <p className="tnum mt-2 font-display text-[34px] font-semibold leading-none">{v}</p>
           </div>
         ))}
       </div>
-      <div className="rounded-xl border bg-white p-5">
-        <h2 className="font-semibold">Orders ({orders.length})</h2>
-        <div className="ag-theme-quartz mt-3" style={{ height: 400 }}>
-          <AgGridReact<Order> rowData={orders} columnDefs={cols} />
+      <div className={CARD}>
+        <h2 className="font-jakarta text-base font-bold text-fern-950">Orders <span className="tnum ml-1 rounded-full bg-fern-100 px-2.5 py-1 align-middle font-sans text-xs font-bold text-fern-800">{orders.length}</span></h2>
+        <div className="ag-theme-quartz mt-4">
+          <AgGridReact<Order> rowData={orders} columnDefs={cols} domLayout="autoHeight" />
         </div>
+        {orders.length === 0 && <p className="mt-3 text-sm text-neutral-500">No orders yet — share your store link to make the first sale.</p>}
       </div>
     </div>
   );
@@ -493,61 +524,73 @@ function SettingsTab({ store, subUrl, reload, notify, fail }: {
   }
 
   return (
-    <div className="grid gap-6 lg:grid-cols-2">
-      <div className="rounded-xl border bg-white p-5">
-        <h2 className="font-semibold">Theme</h2>
-        <div className="mt-3 grid grid-cols-2 gap-2">
+    <div className="space-y-6">
+      <div>
+        <h1 className="font-display text-[26px] font-semibold text-fern-950">Settings</h1>
+        <p className="mt-0.5 text-sm text-[#7a8a72]">Theme, domains, settlement and automation for {store.name}.</p>
+      </div>
+      <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
+      <div className={CARD}>
+        <h2 className="font-jakarta text-base font-bold text-fern-950">Theme</h2>
+        <div className="mt-4 grid grid-cols-2 gap-3">
           {TEMPLATES.map((t) => {
             const active = theme.template === t.theme.template && theme.primary === t.theme.primary && theme.style?.bg === t.theme.style?.bg;
             return (
               <button key={t.name} onClick={() => setTheme(t.theme)}
-                className={`rounded-lg border p-1.5 text-left ${active ? "ring-2" : ""}`}
-                style={active ? ({ ["--tw-ring-color" as string]: GREEN } as React.CSSProperties) : {}}>
+                className={`rounded-2xl border p-2 text-left transition hover:shadow-card ${active ? "border-fern-800 ring-2 ring-fern-800/25" : "border-[#e0e8d0]"}`}>
                 <TemplatePreview theme={t.theme} storeName={t.name} />
-                <span className="mt-1 block px-0.5 text-xs font-medium">{t.name}{active ? " ✓" : ""}</span>
+                <span className="mt-1.5 block px-1 pb-0.5 text-xs font-semibold text-fern-950">{t.name}{active ? " ✓" : ""}</span>
               </button>
             );
           })}
         </div>
-        <p className="mt-2 text-xs text-neutral-500">Picking a preset replaces layout, fonts and colours. Editing the brand colour below keeps the preset layout.</p>
-        <div className="mt-3 space-y-3">
-          <label className="block text-sm">Brand color
-            <input type="color" value={theme.primary} onChange={(e) => setTheme({ ...theme, primary: e.target.value })} className="ml-2 h-8 w-12 align-middle" />
-          </label>
-          <input value={theme.heroTitle} onChange={(e) => setTheme({ ...theme, heroTitle: e.target.value })} placeholder="Hero title" className="w-full rounded border px-3 py-2 text-sm" />
-          <input value={theme.heroSubtitle} onChange={(e) => setTheme({ ...theme, heroSubtitle: e.target.value })} placeholder="Hero subtitle" className="w-full rounded border px-3 py-2 text-sm" />
-          <button onClick={() => save({ theme_json: theme }, "Theme saved — storefront updated")}
-            className="w-full rounded-full px-4 py-2.5 text-sm font-semibold text-white" style={{ background: GREEN }}>
+        <p className="mt-3 text-xs leading-relaxed text-[#7a8a72]">Picking a preset replaces layout, fonts and colours. Editing the brand colour below keeps the preset layout.</p>
+        <div className="mt-4 space-y-3.5">
+          <div>
+            <span className="fern-label">Brand color</span>
+            <span className="flex items-center gap-3">
+              <input type="color" value={theme.primary} onChange={(e) => setTheme({ ...theme, primary: e.target.value })} className="h-10 w-14 cursor-pointer rounded-lg border border-[#d8e2c6] bg-white p-1" />
+              <span className="tnum rounded-lg bg-fern-50 px-2.5 py-1.5 font-mono text-xs font-semibold text-fern-950">{theme.primary}</span>
+            </span>
+          </div>
+          <div><label className="fern-label" htmlFor="s-hero">Hero title</label><input id="s-hero" value={theme.heroTitle} onChange={(e) => setTheme({ ...theme, heroTitle: e.target.value })} placeholder="Hero title" className="fern-input" /></div>
+          <div><label className="fern-label" htmlFor="s-sub">Hero subtitle</label><input id="s-sub" value={theme.heroSubtitle} onChange={(e) => setTheme({ ...theme, heroSubtitle: e.target.value })} placeholder="Hero subtitle" className="fern-input" /></div>
+          <button onClick={() => save({ theme_json: theme }, "Theme saved — storefront updated")} className="fern-btn-primary w-full !py-3">
             Save theme
           </button>
         </div>
       </div>
 
       <div className="space-y-6">
-        <div className="rounded-xl border bg-white p-5">
-          <h2 className="font-semibold">Domains</h2>
-          <p className="mt-2 text-sm">Subdomain: <span className="underline">{subUrl}</span></p>
-          <p className="text-sm">Path URL: <a className="underline" style={{ color: GREEN }} href={`/s/${store.slug}`} target="_blank">/s/{store.slug}</a></p>
-          <p className="mt-2 text-xs text-neutral-500">Custom domains land here post-hackathon.</p>
+        <div className={CARD}>
+          <h2 className="font-jakarta text-base font-bold text-fern-950">Domains</h2>
+          <dl className="mt-3 space-y-2.5 text-sm">
+            <div><dt className="fern-label !mb-0.5">Subdomain</dt><dd className="break-all font-medium text-fern-800 underline decoration-fern-800/30 underline-offset-2">{subUrl}</dd></div>
+            <div><dt className="fern-label !mb-0.5">Path URL</dt><dd><a className="font-medium text-fern-800 underline decoration-fern-800/30 underline-offset-2 hover:decoration-fern-800" href={`/s/${store.slug}`} target="_blank">/s/{store.slug}</a></dd></div>
+          </dl>
+          <p className="mt-3 text-xs text-[#7a8a72]">Custom domains land here post-hackathon.</p>
         </div>
-        <div className="rounded-xl border bg-white p-5">
-          <h2 className="font-semibold">Settlement</h2>
-          <input value={payoutEmail} onChange={(e) => setPayoutEmail(e.target.value)} placeholder="PayPal payout email" className="mt-3 w-full rounded border px-3 py-2 text-sm" />
-          <input value={merchantId} onChange={(e) => setMerchantId(e.target.value)} placeholder="PayPal merchant ID (direct settlement)" className="mt-2 w-full rounded border px-3 py-2 text-sm" />
+        <div className={CARD}>
+          <h2 className="font-jakarta text-base font-bold text-fern-950">Settlement</h2>
+          <div className="mt-3.5 space-y-3">
+            <div><label className="fern-label" htmlFor="s-email">PayPal payout email</label><input id="s-email" value={payoutEmail} onChange={(e) => setPayoutEmail(e.target.value)} placeholder="you@example.com" className="fern-input" /></div>
+            <div><label className="fern-label" htmlFor="s-merchant">PayPal merchant ID <span className="font-medium normal-case tracking-normal text-neutral-400">(direct settlement)</span></label><input id="s-merchant" value={merchantId} onChange={(e) => setMerchantId(e.target.value)} placeholder="Optional" className="fern-input" /></div>
+          </div>
           <button onClick={() => save({ payout_email: payoutEmail.trim() || null, paypal_merchant_id: merchantId.trim() || null }, "Settlement saved")}
-            className="mt-3 w-full rounded-full bg-neutral-900 px-4 py-2 text-sm text-white">Save settlement</button>
-          <p className="mt-2 text-xs text-neutral-500">No merchant ID → platform settles, sellers paid to payout email. With one → PayPal settles directly to the seller.</p>
+            className="fern-btn-primary mt-4 w-full">Save settlement</button>
+          <p className="mt-2.5 text-xs leading-relaxed text-[#7a8a72]">No merchant ID → platform settles, sellers paid to payout email. With one → PayPal settles directly to the seller.</p>
         </div>
-        <div className="rounded-xl border bg-white p-5">
-          <h2 className="font-semibold">Automation webhook (Zapier)</h2>
-          <div className="mt-3 flex gap-2">
-            <input value={webhookUrl} onChange={(e) => setWebhookUrl(e.target.value)} placeholder="https://hooks.zapier.com/hooks/catch/…" className="flex-1 rounded border px-3 py-2 text-sm" />
+        <div className={CARD}>
+          <h2 className="font-jakarta text-base font-bold text-fern-950">Automation webhook (Zapier)</h2>
+          <div className="mt-3.5 flex flex-col gap-2 sm:flex-row">
+            <input value={webhookUrl} onChange={(e) => setWebhookUrl(e.target.value)} placeholder="https://hooks.zapier.com/hooks/catch/…" className="fern-input flex-1" />
             <button onClick={() => {
               if (webhookUrl.trim() && !/^https?:\/\//.test(webhookUrl.trim())) { fail("webhook must start with http(s)://"); return; }
               save({ webhook_url: webhookUrl.trim() || null }, "Webhook saved");
-            }} className="rounded-full bg-neutral-900 px-4 py-2 text-sm text-white">Save</button>
+            }} className="fern-btn-primary shrink-0">Save</button>
           </div>
         </div>
+      </div>
       </div>
     </div>
   );

@@ -4,21 +4,91 @@
 
 :root {
   color-scheme: light;
-  --background: #faf9f6;
-  --foreground: #171717;
+  --background: #f4f6ef;
+  --foreground: #14231a;
+  --fern: #1e6b3f;
+  --fern-deep: #0b2a1a;
+  --fern-mint: #e8f1da;
+  --line: #dde6cf;
 }
+
+html { scroll-behavior: smooth; }
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: Inter, ui-sans-system, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-feature-settings: "ss01", "cv11";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  /* Warm botanical wash instead of flat grey — mint glow top-left, cream glow top-right */
+  background:
+    radial-gradient(900px 480px at 8% -8%, rgba(168, 217, 124, 0.28), transparent 60%),
+    radial-gradient(800px 420px at 96% -10%, rgba(245, 197, 107, 0.20), transparent 55%),
+    linear-gradient(180deg, #f7f8f1 0%, #f1f4e9 55%, #eef2e4 100%);
+  background-attachment: fixed;
+  min-height: 100vh;
 }
 
+::selection { background: #c8ddad; color: #0b2a1a; }
+
+/* Numbers (prices, stock, revenue) line up in columns */
+.tnum { font-variant-numeric: tabular-nums; }
+
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .text-balance { text-wrap: balance; }
+}
+
+@layer components {
+  .fern-card {
+    @apply rounded-[20px] border border-[#e0e8d0] bg-white shadow-card;
+  }
+  .fern-input {
+    @apply w-full rounded-xl border border-[#d8e2c6] bg-[#fbfcf8] px-3.5 py-2.5 text-sm text-fernink placeholder:text-neutral-400 outline-none transition focus:border-fern-800 focus:bg-white focus:ring-4 focus:ring-fern-800/10;
+  }
+  .fern-label {
+    @apply mb-1.5 block text-[11px] font-bold uppercase tracking-[0.08em] text-[#5b6b58];
+  }
+  .fern-btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-fern-800 px-5 py-2.5 text-sm font-semibold text-white shadow-glow transition hover:-translate-y-px hover:bg-[#175733] active:translate-y-0 disabled:translate-y-0 disabled:opacity-50;
+  }
+  .fern-btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-[#d8e2c6] bg-white px-5 py-2.5 text-sm font-medium text-fernink transition hover:border-fern-800/40 hover:bg-fern-50;
+  }
+  /* Native file inputs (the grey "Browse…" buttons in the screenshots) */
+  .fern-file {
+    @apply block w-full cursor-pointer text-sm text-neutral-500 file:mr-3 file:cursor-pointer file:rounded-full file:border file:border-[#cfdcba] file:bg-fern-50 file:px-4 file:py-2 file:text-xs file:font-semibold file:text-fern-800 hover:file:bg-fern-100 disabled:opacity-50;
   }
 }
+
+/* ---- AG Grid: re-theme Quartz to Fern (was stock grey spreadsheet) ---- */
+.ag-theme-quartz {
+  --ag-font-family: Inter, ui-sans-system, system-ui, sans-serif;
+  --ag-font-size: 14px;
+  --ag-background-color: #ffffff;
+  --ag-foreground-color: #223528;
+  --ag-header-background-color: #eef4e0;
+  --ag-header-foreground-color: #39513e;
+  --ag-header-font-weight: 700;
+  --ag-border-color: #e3ead2;
+  --ag-row-border-color: #edf1e2;
+  --ag-row-hover-color: #f2f7e9;
+  --ag-selected-row-background-color: #e2efd0;
+  --ag-odd-row-background-color: #fbfcf7;
+  --ag-accent-color: #1e6b3f;
+  --ag-input-focus-border-color: #1e6b3f;
+  --ag-header-height: 46px;
+  --ag-row-height: 46px;
+  --ag-cell-horizontal-padding: 16px;
+  --ag-border-radius: 14px;
+}
+.ag-theme-quartz .ag-root-wrapper { border: 1px solid #e3ead2; border-radius: 14px; overflow: hidden; }
+.ag-theme-quartz .ag-header-cell-text { font-size: 11px; letter-spacing: 0.07em; text-transform: uppercase; }
+.ag-theme-quartz .ag-cell { display: flex; align-items: center; }
+
+/* Slim, tinted scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb { background: #c3d2ab; border-radius: 8px; border: 2px solid #f4f6ef; }
+::-webkit-scrollbar-track { background: transparent; }
 
 /* Material Symbols icon font helper */
 .material-symbols-outlined {
