@@ -6,7 +6,7 @@
 # Notes:
 # - NEXT_PUBLIC_* are baked into the image at BUILD time (build.args below).
 #   Rebuild after changing them. Server-only secrets (PAYPAL_CLIENT_SECRET,
-#   OPENCODE_GO_API_KEY, SUPABASE_SERVICE_ROLE_KEY) are runtime-only (environment).
+#   DEEPSEEK_API_KEY, SUPABASE_SERVICE_ROLE_KEY) are runtime-only (environment).
 # - Caddy terminates TLS (ports 80/443) and proxies to app:3000. The app itself
 #   is NOT exposed to the host — only through Caddy.
 # - Caddy data (certs) persist in the `caddy_data` volume — don't delete it.
@@ -30,7 +30,7 @@ services:
       PAYPAL_CLIENT_ID: ${PAYPAL_CLIENT_ID}
       PAYPAL_CLIENT_SECRET: ${PAYPAL_CLIENT_SECRET}
       PAYPAL_MODE: ${PAYPAL_MODE:-sandbox}
-      OPENCODE_GO_API_KEY: ${OPENCODE_GO_API_KEY:-}
+      DEEPSEEK_API_KEY: ${DEEPSEEK_API_KEY:-}
     expose:
       - "3000"
     restart: unless-stopped
@@ -53,6 +53,7 @@ services:
     environment:
       DOMAIN: ${DOMAIN}
       ACME_EMAIL: ${ACME_EMAIL}
+      DUCKDNS_TOKEN: ${DUCKDNS_TOKEN:-}
       # Route53 via instance role (preferred — omit keys). If no instance role,
       # uncomment and set: AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY / AWS_REGION.
       # AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID:-}
@@ -62,7 +63,8 @@ services:
       - "80:80"
       - "443:443"
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      # DNS_PROVIDER=route53 → Caddyfile ; duckdns → deploy/Caddyfile.duckdns
+      - ${CADDYFILE:-./Caddyfile}:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - caddy_config:/config
     depends_on:

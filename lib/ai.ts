@@ -1,9 +1,9 @@
 import type { ThemeJson } from "./supabase";
 
 /**
- * Real AI theme generation via OpenCode Go (MiMo-V2.6-Flash, OpenAI-compatible).
+ * Real AI theme generation via DeepSeek (OpenAI-compatible chat completions).
  *
- * Constraint strategy (validated against the live model, Oct 2026):
+ * Constraint strategy:
  * - response_format json_object + temperature 0.5
  * - template locked to a 3-value enum with decision rules
  * - colors locked to a 12-id curated palette list (model picks an id, we map to hex)
@@ -13,11 +13,9 @@ import type { ThemeJson } from "./supabase";
  *   route can fall back to mockGenerateTheme (same ThemeJson schema).
  */
 
-const ENDPOINT = "https://opencode.ai/zen/go/v1/chat/completions";
-const MODEL = "mimo-v2.6-flash";
-
-/** Stable session id per server instance (Go uses it for routing/prompt caching). */
-const SESSION_ID = `fern-theme-${Math.random().toString(36).slice(2, 10)}`;
+const BASE = process.env.DEEPSEEK_BASE_URL || "https://api.deepseek.com";
+const ENDPOINT = `${BASE.replace(/\/+$/, "")}/chat/completions`;
+const MODEL = process.env.DEEPSEEK_MODEL || "deepseek-chat";
 
 export const PALETTES: Record<string, { primary: string; accent: string }> = {
   "sage-calm": { primary: "#0f766e", accent: "#f472b6" },
@@ -67,7 +65,6 @@ export async function generateThemeAI(
       Authorization: `Bearer ${apiKey}`,
       "Content-Type": "application/json",
       "User-Agent": "fern/1.0",
-      "x-opencode-session": SESSION_ID,
     },
     body: JSON.stringify({
       model: MODEL,
@@ -80,7 +77,7 @@ export async function generateThemeAI(
       ],
     }),
   });
-  if (!res.ok) throw new Error(`opencode-go ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  if (!res.ok) throw new Error(`deepseek ${res.status}: ${(await res.text()).slice(0, 200)}`);
   const json = await res.json();
   const content: unknown = json.choices?.[0]?.message?.content;
   if (typeof content !== "string") throw new Error("empty completion");
@@ -104,5 +101,5 @@ export async function generateThemeAI(
   if (theme.heroTitle.trim().toLowerCase() === storeName.trim().toLowerCase()) {
     theme.heroTitle = fallbackTitle;
   }
-  return { theme, notes: [`provider=opencode-go/${MODEL}`, `template=${template}`, `palette=${paletteId}`] };
+  return { theme, notes: [`provider=deepseek/${MODEL}`, `template=${template}`, `palette=${paletteId}`] };
 }

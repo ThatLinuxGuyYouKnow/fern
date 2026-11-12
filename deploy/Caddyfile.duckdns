@@ -1,0 +1,32 @@
+# fern Caddyfile — EC2 + DuckDNS (free wildcard, no Route53)
+#
+# TLS model: ONE wildcard cert (*.DOMAIN) covers ALL tenants (<slug>.DOMAIN).
+# Caddy issues 2 certs total (apex via HTTP-01, wildcard via DuckDNS DNS-01).
+#
+# Required env (see docker-compose.prod.yml / deploy/ec2-user-data.sh):
+#   DOMAIN       e.g. fernshop.duckdns.org (your DuckDNS name)
+#   ACME_EMAIL   e.g. you@example.com
+#   DUCKDNS_TOKEN  from duckdns.org account page (caddy container env)
+#
+# DuckDNS dashboard (one time): create subdomains "<name>" AND "*.<name>"
+# (e.g. "fernshop" and "*.fernshop"). The bootstrap/user-data script points
+# both at the instance's elastic IP via the DuckDNS update API.
+
+{
+	email {$ACME_EMAIL}
+}
+
+# Apex / platform app: create wizard, admin, /s/<slug> fallback
+{$DOMAIN} {
+	encode gzip
+	reverse_proxy app:3000
+}
+
+# All tenants: <slug>.DOMAIN → middleware.ts parses Host → rewrite /s/<slug>
+*.{$DOMAIN} {
+	tls {
+		dns duckdns {env.DUCKDNS_TOKEN}
+	}
+	encode gzip
+	reverse_proxy app:3000
+}

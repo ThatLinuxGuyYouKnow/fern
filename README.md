@@ -49,10 +49,12 @@ rows are validated client-side, errors reported per line, then bulk-inserted.
 ## AI theme generation
 
 `POST /api/ai/generate-theme {description, storeName}` → `ThemeJson`
-(same schema as the template picker). Current provider is a **mock**
-(keyword → template/colors); swap the route body for an LLM call later —
-client and DB schema are unchanged. This satisfies the hackathon's AI-track
-interface while keeping the build runnable offline.
+(same schema as the template picker). Uses **DeepSeek** (`deepseek-chat` by
+default, override with `DEEPSEEK_MODEL`) when `DEEPSEEK_API_KEY` is set;
+response is JSON-mode + palette/template-constrained, then validated
+server-side. Without a key it falls back to the keyword **mock** so the build
+stays runnable offline. Get a key at
+<https://platform.deepseek.com/api_keys>; never prefix it with `NEXT_PUBLIC_`.
 
 ## Agentic commerce: agents can shop
 
@@ -85,17 +87,31 @@ Every fern store is agent-buyable two ways (same PayPal checkout underneath):
 | Render | `render.yaml` Docker deploy (fallback demo URL `/s/<slug>`) |
 | Postman | API collection for the demo video (to add at submission) |
 
-## Deploy: EC2 + Route53 + Caddy (primary — one wildcard cert, unlimited tenants)
+## Deploy: EC2 + Caddy (primary — one wildcard cert, unlimited tenants)
 
-1. Route53: `A DOMAIN → elastic IP`, `A *.DOMAIN → same IP`. SG: `tcp:80,443` open.
-2. EC2 instance role with `route53:ChangeResourceRecordSets` on the zone
-   (Caddy DNS-01 needs no static AWS keys).
-3. On the box: fill CONFIG in `deploy/ec2-user-data.sh`
-   (or paste it as EC2 user-data), which writes `.env.prod` and runs
-   `docker compose -f docker-compose.prod.yml up -d --build`.
-   Caddy (`deploy/Caddy.Dockerfile` = stock Caddy + route53 plugin) issues
-   **2 certs total** — apex + `*.DOMAIN` — and auto-renews. The Next
-   middleware parses `Host: <slug>.DOMAIN` → store lookup → rewrite to `/s/<slug>`.
+**DNS provider is a switch** (`DNS_PROVIDER` in `deploy/aws.env`):
+`route53` for a custom domain, `duckdns` for a free `<name>.duckdns.org`
+(create both `<name>` and `*.<name>` subdomains in the DuckDNS dashboard).
+
+Automated path:
+
+```bash
+cp deploy/aws.env.example deploy/aws.env   # fill in
+set -a; source deploy/aws.env; set +a
+bash deploy/aws-bootstrap.sh               # SG, IAM, instance, EIP, DNS records
+```
+
+It writes the right Caddyfile (`Caddyfile` for Route53,
+`deploy/Caddyfile.duckdns` for DuckDNS), then first boot writes `.env.prod` and
+runs `docker compose -f docker-compose.prod.yml up -d --build`.
+Caddy (`deploy/Caddy.Dockerfile` = stock Caddy + route53 + duckdns plugins)
+issues **2 certs total** — apex + `*.DOMAIN` — and auto-renews. The Next
+middleware parses `Host: <slug>.DOMAIN` → store lookup → rewrite to `/s/<slug>`.
+No `:22` needed: connect via console **Session Manager**. Redeploy:
+`bash deploy/update.sh` on the box.
+
+Manual path without the wrapper script: use `deploy/ec2-user-data.sh` as EC2
+user-data after filling its CONFIG block, and create the DNS records yourself.
 
 ## Deploy: GCE + DuckDNS + Caddy (cheap alt, same wildcard model)
 
