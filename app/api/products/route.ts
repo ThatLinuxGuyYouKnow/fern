@@ -26,6 +26,14 @@ export async function POST(req: Request) {
     if (!p.name || !Number.isInteger(p.price_cents) || p.price_cents < 0)
       return NextResponse.json({ error: `invalid product: ${p.name || "?"}` }, { status: 400 });
   }
+  const { data: existing, error: posErr } = await supabase
+    .from("products")
+    .select("position")
+    .eq("store_id", store_id)
+    .order("position", { ascending: false })
+    .limit(1);
+  if (posErr) return NextResponse.json({ error: posErr.message }, { status: 500 });
+  const base = existing?.[0]?.position != null ? Number(existing[0].position) + 1 : 0;
   const rows = products.map((p, i) => ({
     store_id,
     name: p.name,
@@ -33,7 +41,7 @@ export async function POST(req: Request) {
     image_url: p.image_url ?? null,
     description: p.description ?? "",
     stock: p.stock ?? 0,
-    position: i,
+    position: base + i,
   }));
   const { data, error } = await supabase.from("products").insert(rows).select();
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });

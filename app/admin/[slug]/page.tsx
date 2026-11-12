@@ -7,7 +7,7 @@ import { AllCommunityModule, ModuleRegistry, type ColDef } from "ag-grid-communi
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { supabase, type Store, type Product, type Order, dollars } from "@/lib/supabase";
-import { validateCsvRecord, type CsvRow } from "@/lib/csv";
+import { validateCsvRecord, normalizeHeader, type CsvRow } from "@/lib/csv";
 import { TEMPLATES } from "@/lib/themes";
 import TemplatePreview from "@/components/TemplatePreview";
 import type { ThemeJson } from "@/lib/supabase";
@@ -303,6 +303,7 @@ function ProductsTab({ store, products, query, reload, notify, fail }: {
   const [saving, setSaving] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [csvReport, setCsvReport] = useState<string[] | null>(null);
+  const [csvBusy, setCsvBusy] = useState(false);
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [gridApi, setGridApi] = useState<any>(null);
 
@@ -348,26 +349,34 @@ function ProductsTab({ store, products, query, reload, notify, fail }: {
 
   async function handleCsv(f: File) {
     setCsvReport(null);
+    setCsvBusy(true);
     Papa.parse<Record<string, string>>(f, {
-      header: true, skipEmptyLines: true,
+      header: true, skipEmptyLines: true, encoding: "UTF-8",
+      transformHeader: normalizeHeader,
       complete: async (results) => {
-        const rows: CsvRow[] = [];
-        const errs: string[] = [];
-        results.data.forEach((r, i) => {
-          const { row, error } = validateCsvRecord(r, i + 2);
-          if (row) rows.push(row); else if (error) errs.push(error);
-        });
-        if (errs.length > 0) { setCsvReport(errs); return; }
-        if (rows.length === 0) { setCsvReport(["no valid rows found"]); return; }
-        const res = await fetch("/api/products", {
-          method: "POST", headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ store_id: store.id, products: rows }),
-        });
-        const j = await res.json();
-        if (!res.ok) { fail(j.error || "import failed"); return; }
-        setCsvReport([`imported ${rows.length} products`]);
-        reload();
+        try {
+          const rows: CsvRow[] = [];
+          const errs: string[] = [];
+          results.data.forEach((r, i) => {
+            const { row, error } = validateCsvRecord(r, i + 2);
+            if (row) rows.push(row); else if (error) errs.push(error);
+          });
+          if (rows.length === 0) { setCsvReport(errs.length ? errs : ["no valid rows found — check the template headers: name,price,image_url,description,stock"]); return; }
+          const res = await fetch("/api/products", {
+            method: "POST", headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ store_id: store.id, products: rows }),
+          });
+          const j = await res.json();
+          if (!res.ok) { fail(j.error || "import failed"); return; }
+          setCsvReport([
+            `imported ${rows.length} product${rows.length === 1 ? "" : "s"}`,
+            ...errs.slice(0, 10),
+            ...(errs.length > 10 ? [`…plus ${errs.length - 10} more skipped rows`] : []),
+          ]);
+          reload();
+        } finally { setCsvBusy(false); }
       },
+      error: (e) => { setCsvBusy(false); setCsvReport([`could not read file: ${e.message}`]); },
     });
   }
 
@@ -399,8 +408,9 @@ function ProductsTab({ store, products, query, reload, notify, fail }: {
           <p className="mt-1 text-sm text-neutral-600">
             <a href="/api/csv-template" className="underline" style={{ color: GREEN }}>Download the template CSV</a>, fill it with your stock, then upload it here.
           </p>
-          <input type="file" accept=".csv" className="mt-3 text-sm"
-            onChange={(e) => e.target.files?.[0] && handleCsv(e.target.files[0])} />
+          <input type="file" accept=".csv" disabled={csvBusy} className="mt-3 text-sm disabled:opacity-50"
+            onChange={(e) => { const f = e.target.files?.[0]; e.target.value = ""; if (f) handleCsv(f); }} />
+          {csvBusy && <p className="mt-2 text-sm text-neutral-500">Importing…</p>}
           {csvReport && <ul className="mt-3 rounded bg-neutral-50 p-3 text-sm">{csvReport.map((r, i) => <li key={i}>{r}</li>)}</ul>}
         </div>
       </div>
