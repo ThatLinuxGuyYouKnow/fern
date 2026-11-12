@@ -3,6 +3,20 @@
 Pick a template or describe it to AI, upload a logo + products (form or CSV),
 get a live storefront at `<slug>.domain` or `/s/<slug>`, check out with PayPal.
 
+## Screenshots
+
+Real UI from the sandbox run, captured at 1600x900.
+
+| Create a store | Store is live |
+|---|---|
+| ![Create a store](docs/screenshots/01-create-store.png) | ![Store admin is live](docs/screenshots/02-store-live.png) |
+
+| Storefront | Cart and PayPal |
+|---|---|
+| ![Juniper Market storefront](docs/screenshots/03-storefront.png) | ![Cart with PayPal and card buttons](docs/screenshots/04-cart-paypal.png) |
+
+![Debit or credit card form](docs/screenshots/05-card-form.png)
+
 ## Live demo
 
 - Apex/app: `https://YOUR-DOMAIN/` (create a store)
