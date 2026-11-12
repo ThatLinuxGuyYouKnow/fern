@@ -7,6 +7,12 @@ cd /opt/fern
 git pull --ff-only
 docker compose -f docker-compose.prod.yml --env-file .env.prod up -d --build
 docker image prune -f
-echo "--- health ---"
-curl -fs http://localhost:3000/api/health; echo
-docker compose -f docker-compose.prod.yml ps
+echo "--- health (via app container; app port is not published to the host) ---"
+for i in $(seq 1 24); do
+  if docker compose -f docker-compose.prod.yml --env-file .env.prod exec -T app wget -qO- http://localhost:3000/api/health; then
+    echo
+    break
+  fi
+  sleep 5
+done
+docker compose -f docker-compose.prod.yml --env-file .env.prod ps
