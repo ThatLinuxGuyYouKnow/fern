@@ -71,8 +71,16 @@ aws iam attach-role-policy --role-name "$ROLE_NAME" \
   --policy-arn arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
 if ! aws iam get-instance-profile --instance-profile-name "$PROFILE_NAME" >/dev/null 2>&1; then
   aws iam create-instance-profile --instance-profile-name "$PROFILE_NAME" >/dev/null
-  aws iam add-role-to-instance-profile --instance-profile-name "$PROFILE_NAME" --role-name "$ROLE_NAME"
 fi
+# Attach role (idempotent) and wait for IAM→EC2 propagation before RunInstances.
+aws iam add-role-to-instance-profile --instance-profile-name "$PROFILE_NAME" --role-name "$ROLE_NAME" 2>/dev/null || true
+for i in $(seq 1 12); do
+  ROLES=$(aws iam get-instance-profile --instance-profile-name "$PROFILE_NAME" \
+    --query 'InstanceProfile.Roles[].RoleName' --output text 2>/dev/null || true)
+  case " $ROLES " in *" $ROLE_NAME "*) break ;; esac
+  echo "waiting for instance profile propagation ($i/12)..."
+  sleep 5
+done
 
 say "3. user-data (env baked into first boot)"
 # Same CONFIG block as deploy/ec2-user-data.sh — exported vars override defaults there.
@@ -100,15 +108,28 @@ UD=$(mktemp)
 say "4. launch instance"
 KEY_ARGS=()
 [ -n "$KEY_NAME" ] && KEY_ARGS=(--key-name "$KEY_NAME")
-INSTANCE_ID=$(aws ec2 run-instances \
-  --image-id "$AMI_ID" --instance-type "$INSTANCE_TYPE" "${KEY_ARGS[@]+"${KEY_ARGS[@]}"}" \
-  --subnet-id "$SUBNET_ID" --security-group-ids "$SG_ID" --associate-public-ip-address \
-  --iam-instance-profile Name="$PROFILE_NAME" \
-  --user-data "file://$UD" \
-  --credit-specification '{"CpuCredits":"unlimited"}' \
-  --tag-specifications '[{"ResourceType":"instance","Tags":[{"Key":"Name","Value":"fern"}]}]' \
-  --metadata-options '{"HttpEndpoint":"enabled","HttpPutResponseHopLimit":2,"HttpTokens":"required"}' \
-  --query 'Instances[0].InstanceId' --output text)
+# Retry once or twice: brand-new IAM profiles can take a few seconds to propagate.
+RUN_ERR=$(mktemp)
+for attempt in 1 2 3 4; do
+  if INSTANCE_ID=$(aws ec2 run-instances \
+    --image-id "$AMI_ID" --instance-type "$INSTANCE_TYPE" "${KEY_ARGS[@]+"${KEY_ARGS[@]}"}" \
+    --subnet-id "$SUBNET_ID" --security-group-ids "$SG_ID" --associate-public-ip-address \
+    --iam-instance-profile Name="$PROFILE_NAME" \
+    --user-data "file://$UD" \
+    --credit-specification '{"CpuCredits":"unlimited"}' \
+    --tag-specifications '[{"ResourceType":"instance","Tags":[{"Key":"Name","Value":"fern"}]}]' \
+    --metadata-options '{"HttpEndpoint":"enabled","HttpPutResponseHopLimit":2,"HttpTokens":"required"}' \
+    --query 'Instances[0].InstanceId' --output text 2>"$RUN_ERR"); then
+    break
+  fi
+  if grep -q "Invalid IAM Instance Profile" "$RUN_ERR" && [ "$attempt" -lt 4 ]; then
+    echo "IAM profile not propagated yet — retry $attempt/4 in 15s..."
+    sleep 15
+  else
+    cat "$RUN_ERR" >&2
+    exit 1
+  fi
+done
 echo "INSTANCE_ID=$INSTANCE_ID"
 aws ec2 wait instance-running --instance-ids "$INSTANCE_ID"
 
