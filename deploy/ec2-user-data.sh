@@ -6,9 +6,10 @@
 #   route53 — custom domain. Requires IAM instance role with
 #             route53:ChangeResourceRecordSets on the hosted zone (no AWS keys).
 #             Route53: A DOMAIN → EIP ; A *.DOMAIN → EIP.
-#   duckdns — free <name>.duckdns.org. Requires DUCKDNS_TOKEN. Create both
-#             "<name>" and "*.<name>" subdomains in the DuckDNS dashboard; this
-#             script points them at the instance's public IP automatically.
+#   duckdns — free <name>.duckdns.org. Requires DUCKDNS_TOKEN. Create only
+#             "<name>" in the DuckDNS dashboard (DuckDNS rejects "*"); tenant
+#             sub-subdomains inherit its A record. This script points it at the
+#             instance's public IP automatically.
 # Security group: tcp 80 + 443 world (no :22 needed — use Session Manager).
 #
 # Fill the CONFIG block below (or inject via EC2 user-data env), then run.
@@ -34,7 +35,18 @@ NEXT_PUBLIC_ROOT_DOMAIN="${NEXT_PUBLIC_ROOT_DOMAIN:-$DOMAIN}"
 DEEPSEEK_API_KEY="${DEEPSEEK_API_KEY:-}"
 # ===========================================
 
+case "$REPO_URL" in
+  *"/YOU/"*) echo "ERROR: REPO_URL is still the placeholder — set it in deploy/aws.env" >&2; exit 1 ;;
+esac
+
 export DEBIAN_FRONTEND=noninteractive
+
+# --- swap: build headroom on small instances (t3.micro has 1 GB) ---
+if [ ! -f /swapfile ]; then
+  fallocate -l 2G /swapfile 2>/dev/null || dd if=/dev/zero of=/swapfile bs=1M count=2048 status=none
+  chmod 600 /swapfile && mkswap -q /swapfile && swapon /swapfile
+  grep -q '^/swapfile' /etc/fstab || echo '/swapfile none swap sw 0 0' >> /etc/fstab
+fi
 
 # --- Caddyfile selection (tracked file stays untouched → clean `git pull`) ---
 if [ "$DNS_PROVIDER" = "duckdns" ]; then
@@ -55,7 +67,10 @@ systemctl enable --now docker
 # --- app checkout ---
 if [ ! -d "$APP_DIR/.git" ]; then
   mkdir -p "$(dirname "$APP_DIR")"
-  git clone "$REPO_URL" "$APP_DIR" || cp -r /home/ubuntu/fern "$APP_DIR"
+  if ! git clone "$REPO_URL" "$APP_DIR"; then
+    echo "ERROR: git clone failed for $REPO_URL — check REPO_URL and that the repo is public" >&2
+    exit 1
+  fi
 fi
 cd "$APP_DIR"
 git pull --ff-only || true

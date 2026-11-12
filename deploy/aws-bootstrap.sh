@@ -19,6 +19,9 @@ set -euo pipefail
 : "${DOMAIN:?set DOMAIN}"
 : "${ACME_EMAIL:?set ACME_EMAIL}"
 : "${REPO_URL:?set REPO_URL (public git URL the box can clone)}"
+case "$REPO_URL" in
+  *"/YOU/"*) echo "ERROR: REPO_URL is still the example placeholder — set it in deploy/aws.env (e.g. https://github.com/<you>/fern.git)" >&2; exit 1 ;;
+esac
 : "${INSTANCE_TYPE:=t3.micro}"
 : "${SG_NAME:=fern-prod-sg}"
 : "${ROLE_NAME:=fern-route53}"
