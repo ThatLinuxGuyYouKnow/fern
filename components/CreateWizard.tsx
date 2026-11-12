@@ -307,6 +307,7 @@ export default function CreateWizard({ initialMode = "quickstart" }: { initialMo
     <section className={cardCls}>
       <h2 className="font-headline-md font-bold text-on-surface">2 · Pick a look</h2>
       <p className="mt-1 text-sm text-on-surface-variant">That&apos;s it — a starter catalogue and checkout are set up for you. Restyle or restock anytime.</p>
+      <p className="mt-2 text-sm text-on-surface-variant">Have your own stock? <a href="/api/csv-template" className="font-semibold text-secondary underline">Download the CSV template</a>, fill it in, and import it from your admin dashboard after launch.</p>
       <div className="mt-4 grid gap-3 sm:grid-cols-3">
         {ARCHETYPES.map((a) => {
           const active = theme.heroTitle === a.theme.heroTitle && theme.primary === a.theme.primary;
@@ -353,7 +354,7 @@ export default function CreateWizard({ initialMode = "quickstart" }: { initialMo
           </div>
         </dl>
         <p className="mt-3 border-t border-outline-variant/30 pt-3 text-xs leading-relaxed text-on-surface-variant">
-          After launch you&apos;ll add products (form or CSV import) and take PayPal payments from your admin dashboard.
+          After launch you&apos;ll add products (form or <a href="/api/csv-template" className="underline">CSV import — get the template</a>) and take PayPal payments from your admin dashboard.
         </p>
       </div>
     </aside>
