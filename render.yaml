@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: fern
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    envVars:
+      - key: NEXT_PUBLIC_SUPABASE_URL
+        value: https://tieoxujfbrojeiqpneji.supabase.co
+      - key: NEXT_PUBLIC_SUPABASE_ANON_KEY
+        sync: false
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_MODE
+        value: sandbox
+      - key: NEXT_PUBLIC_PAYPAL_CLIENT_ID
+        sync: false
+      - key: NEXT_PUBLIC_ROOT_DOMAIN
+        sync: false

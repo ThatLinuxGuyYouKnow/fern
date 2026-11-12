@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary-container": "#79ad87", "surface-container-low": "#f1f4ef", "surface-container-high": "#e6e9e4", "surface-container-lowest": "#ffffff", "surface-dim": "#d8dbd6", "on-secondary": "#ffffff", "on-primary": "#ffffff", "on-background": "#191d1a", "secondary-fixed-dim": "#a1d494", "on-error": "#ffffff", "secondary": "#3b6934", "on-primary-fixed": "#012106", "surface-tint": "#446744", "surface-container": "#ecefe9", "tertiary-container": "#0c4123", "on-secondary-fixed-variant": "#23501e", "on-surface": "#191d1a", "error-container": "#ffdad6", "on-secondary-fixed": "#002201", "tertiary-fixed-dim": "#9dd3aa", "inverse-surface": "#2d312e", "on-primary-container": "#86ab83", "on-tertiary": "#ffffff", "tertiary-fixed": "#b9efc5", "on-error-container": "#93000a", "outline": "#737970", "primary-fixed-dim": "#aad1a6", "surface-container-highest": "#e0e3de", "on-surface-variant": "#424840", "tertiary": "#002913", "on-tertiary-fixed-variant": "#1e5031", "outline-variant": "#c2c8be", "on-tertiary-fixed": "#00210e", "surface-variant": "#e0e3de", "surface": "#f7faf5", "inverse-primary": "#aad1a6", "inverse-on-surface": "#eff2ec", "background": "#f7faf5", "secondary-fixed": "#bcf0ae", "primary-container": "#1e3f20", "on-primary-fixed-variant": "#2d4e2e", "secondary-container": "#b9eeab", "primary-fixed": "#c5edc1", "on-secondary-container": "#3f6d38", "primary": "#07290c", "error": "#ba1a1a", "surface-bright": "#f7faf5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xl": "2rem", "gutter": "1.5rem", "space-md": "1rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "gutter-sm": "1rem", "margin": "2rem", "margin-sm": "1rem" }, fontFamily: { "caption": ["Inter"], "display-lg": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "body-md": ["Inter"], "display-lg-mobile": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "headline-md": ["Plus Jakarta Sans"] }, fontSize: { "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }], "display-lg": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.025em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-sm": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "600" }], "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-md": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col justify-between p-gutter shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-space-lg"><div class="flex items-center gap-space-sm px-space-xs"><img alt="Fern Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VZTWpUh87pInB9DQrcjo7ns3dWFYJSTGixHbf7S4yIDiDENTqcn0K-jO4rWdJaq9lnZM5DdeCvdY_BfHFijSBlxhXg4JI6l3Ui9AaYh_QzYFIWWZ9wViIOC8hCvkcOEPPOXd2yJ0odD_xZlQ9p3fULE5Hg1-Ur1w1sfqXbnlOAImcqK0TsWkuC0k6f6C8fJjSo4hJ9vMrTjvWa_eGJGValgmpP2UhP9gAU8dub8vTHw2Ysrd0i8O7Wsmg"/><span class="font-headline-md text-headline-md font-bold tracking-tight text-primary">Fern</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-label-lg font-semibold rounded-full"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="home" href="#"><span class="material-symbols-outlined text-[20px]">home</span><span class="">Home</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="storefront" href="#"><span class="material-symbols-outlined text-[20px]">storefront</span><span class="">Storefront</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="products" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span class="">Products</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="orders" href="#"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><span class="">Orders</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="customers" href="#"><span class="material-symbols-outlined text-[20px]">group</span><span class="">Customers</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="analytics" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span class="">Analytics</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="marketing" href="#"><span class="material-symbols-outlined text-[20px]">campaign</span><span class="">Marketing</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="discounts" href="#"><span class="material-symbols-outlined text-[20px]">loyalty</span><span class="">Discounts</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="">Settings</span></a></nav></div><div class="p-space-md rounded-xl bg-surface-container-lowest shadow-[0_4px_20px_-2px_rgba(27,48,28,0.04)] relative overflow-hidden flex flex-col gap-space-sm"><div class="flex items-center justify-between"><div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container"><span class="material-symbols-outlined text-[18px]">eco</span></div><span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Pro</span></div><div class="flex flex-col gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface">Grow your brand with Fern</span><span class="font-caption text-caption text-on-surface-variant">Unlock multi-tenant channels, botanical themes, and custom domains.</span></div><a class="mt-space-xs inline-flex items-center justify-center px-space-md py-space-xs rounded-full bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors text-center" data-path="billing-upgrade" href="#">Upgrade</a></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md flex-1 max-w-lg"><img alt="Fern Logo" class="h-8 w-auto object-contain md:hidden" src="https://lh3.googleusercontent.com/aida/AEtjO1VZTWpUh87pInB9DQrcjo7ns3dWFYJSTGixHbf7S4yIDiDENTqcn0K-jO4rWdJaq9lnZM5DdeCvdY_BfHFijSBlxhXg4JI6l3Ui9AaYh_QzYFIWWZ9wViIOC8hCvkcOEPPOXd2yJ0odD_xZlQ9p3fULE5Hg1-Ur1w1sfqXbnlOAImcqK0TsWkuC0k6f6C8fJjSo4hJ9vMrTjvWa_eGJGValgmpP2UhP9gAU8dub8vTHw2Ysrd0i8O7Wsmg"/><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span><input class="w-full h-10 pl-10 pr-space-md rounded-full bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest transition-colors" placeholder="Search everything in Fern..." type="text"/></div></div><div class="flex items-center gap-space-md"><button class="w-9 h-9 rounded-full bg-surface-container-low hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors relative"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary"></span></button><div class="flex items-center gap-space-sm pl-space-sm py-space-xs pr-space-md rounded-full bg-surface-container-low hover:bg-surface-container-high cursor-pointer transition-colors"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="font-label-md text-label-md text-on-surface hidden sm:inline-block">Jamie Doe</span><span class="material-symbols-outlined text-on-surface-variant text-[18px]">arrow_drop_down</span></div></div></header><main class="relative pt-16 bg-surface min-h-screen w-full px-space-lg pb-space-xl"><div class="flex flex-col w-full">
+<!-- Top Context & Pathway Switcher Banner -->
+<section class="flex flex-col gap-space-md mb-space-lg">
+<!-- Breadcrumbs & Status -->
+<div class="flex items-center justify-between flex-wrap gap-space-sm">
+<div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md">
+<a class="hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span>Storefronts</span>
+</a>
+<span>/</span>
+<span class="text-on-surface font-semibold">Storefront Builder</span>
+<span class="mx-space-xs inline-block w-1 h-1 rounded-full bg-outline"></span>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.5 rounded-full font-label-sm text-label-sm font-semibold">Tenant Node #84</span>
+</div>
+<div class="flex items-center gap-space-xs text-on-surface-variant font-caption text-caption">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span>Autosaved 14s ago</span>
+</div>
+</div>
+<!-- Title & Subtitle with Express Switcher -->
+<div class="flex flex-col lg:flex-row lg:items-end justify-between gap-space-md">
+<div>
+<h1 class="font-headline-xl text-headline-xl text-primary tracking-tight">Create your new storefront</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-2xl">
+          Launch a bespoke, multi-tenant digital store in minutes. Choose how you want to build:
+        </p>
+</div>
+<!-- 3-Way Creation Mode Switcher -->
+<div class="p-1.5 bg-surface-container rounded-full flex items-center gap-1 shadow-sm border-0 self-start lg:self-auto">
+<button class="px-space-md py-1.5 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">auto_awesome</span>
+<span>Describe to AI</span>
+<span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant">AI</span>
+</button>
+<button class="px-space-md py-1.5 rounded-full font-label-sm text-label-sm text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high transition-all flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px]">dashboard_customize</span>
+<span>Curated Templates</span>
+<span class="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded-full bg-surface-container-highest text-on-surface-variant">Popular</span>
+</button>
+<button class="px-space-md py-1.5 rounded-full font-label-sm text-label-sm font-semibold bg-primary-container text-on-primary shadow-sm flex items-center gap-1.5">
+<span class="material-symbols-outlined text-[16px] text-secondary-fixed">bolt</span>
+<span>Quick Start (60s Express)</span>
+<span class="text-[10px] font-bold tracking-wider px-1.5 py-0.5 rounded-full bg-secondary text-on-secondary flex items-center gap-0.5">
+            ⚡ ACTIVE
+          </span>
+</button>
+</div>
+</div>
+</section>
+<!-- Main Asymmetric Workspace (8-col Form / 4-col Realtime Sticky Simulator) -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT: Guided 3-Step Express Form (7 cols on lg, 7 cols on xl for airy breathing room) -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg">
+<!-- Express Mode Banner -->
+<div class="relative overflow-hidden rounded-xl bg-gradient-to-r from-primary-container via-primary to-primary-container p-space-md text-on-primary shadow-md">
+<div class="absolute -right-6 -bottom-6 w-32 h-32 rounded-full bg-secondary opacity-20 blur-xl pointer-events-none"></div>
+<div class="flex items-start gap-space-md relative z-10">
+<div class="w-10 h-10 rounded-full bg-secondary/30 flex items-center justify-center shrink-0 text-secondary-fixed">
+<span class="material-symbols-outlined text-[24px]">electric_bolt</span>
+</div>
+<div class="flex flex-col gap-0.5">
+<div class="flex items-center gap-space-xs">
+<span class="font-headline-sm text-headline-sm text-on-primary font-bold">Express Setup Pipeline</span>
+<span class="bg-secondary text-on-secondary px-2 py-0.5 rounded-full font-label-sm text-label-sm font-semibold">T-minus 60s</span>
+</div>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim">
+              Pre-tuned botanical architecture configured automatically. Every parameter updates the live multi-tenant storefront preview instantly.
+            </p>
+</div>
+</div>
+</div>
+<!-- STEP 1: Storefront Identity & Tenant Routing -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm flex items-center justify-center font-bold">1</span>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">Instant Store Identity</h2>
+</div>
+<span class="font-caption text-caption text-secondary font-semibold bg-surface-container-low px-2.5 py-1 rounded-full flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span> Auto-resolving
+          </span>
+</div>
+<div class="flex flex-col gap-space-sm">
+<label class="font-label-md text-label-md text-on-surface font-semibold" for="storeNameInput">
+            Store Name
+          </label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-[20px]">storefront</span>
+<input class="w-full h-11 pl-11 pr-space-md rounded-lg bg-surface-container-low text-on-surface font-body-md text-body-md focus:outline-none focus:bg-surface-container-lowest focus:ring-2 focus:ring-secondary/40 transition-all" id="storeNameInput" type="text" value="Verdant Botanica"/>
+</div>
+<!-- Live Subdomain Generation Pill -->
+<div class="flex items-center justify-between p-2.5 bg-surface-container-low rounded-lg flex-wrap gap-space-xs">
+<div class="flex items-center gap-1.5 font-label-sm text-label-sm">
+<span class="text-on-surface-variant">Global Edge URL:</span>
+<span class="font-mono font-semibold text-primary">verdant-botanica.fern.store</span>
+</div>
+<div class="flex items-center gap-1 text-secondary font-label-sm text-label-sm font-semibold">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span>Available globally</span>
+</div>
+</div>
+</div>
+<!-- Quick Niche Presets -->
+<div class="flex flex-col gap-space-xs mt-1">
+<label class="font-label-md text-label-md text-on-surface-variant font-medium">
+            Express Niche Archetype (Autoloads typography, tone, &amp; sample taxonomy)
+          </label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-xs">
+<!-- Niche 1 (Selected) -->
+<button class="flex items-center justify-between p-3 rounded-lg bg-secondary-container text-on-secondary-container font-label-sm text-label-sm text-left font-semibold shadow-xs">
+<div class="flex items-center gap-2">
+<span class="text-[18px]">🌿</span>
+<span>Plant Nursery &amp; Rare Foliage</span>
+</div>
+<span class="material-symbols-outlined text-[18px]">radio_button_checked</span>
+</button>
+<!-- Niche 2 -->
+<button class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm text-left transition-colors">
+<div class="flex items-center gap-2">
+<span class="text-[18px]">☕</span>
+<span>Specialty Coffee &amp; Beans</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline">radio_button_unchecked</span>
+</button>
+<!-- Niche 3 -->
+<button class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm text-left transition-colors">
+<div class="flex items-center gap-2">
+<span class="text-[18px]">🏺</span>
+<span>Handcrafted Ceramics &amp; Pots</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline">radio_button_unchecked</span>
+</button>
+<!-- Niche 4 -->
+<button class="flex items-center justify-between p-3 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm text-left transition-colors">
+<div class="flex items-center gap-2">
+<span class="text-[18px]">🕯️</span>
+<span>Eco Candles &amp; Fragrance</span>
+</div>
+<span class="material-symbols-outlined text-[18px] text-outline">radio_button_unchecked</span>
+</button>
+</div>
+</div>
+</div>
+<!-- STEP 2: Instant Theme & Layout Archetype -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm flex items-center justify-center font-bold">2</span>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">Instant Theme &amp; Archetype</h2>
+</div>
+<span class="font-caption text-caption text-on-surface-variant">Switch anytime with 0 data loss</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-sm">
+<!-- Card 1 (Active) -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-2 relative shadow-sm cursor-pointer hover:shadow-md transition-all">
+<div class="absolute top-2 right-2 w-5 h-5 rounded-full bg-primary text-on-primary flex items-center justify-center shadow-xs">
+<span class="material-symbols-outlined text-[14px]">check</span>
+</div>
+<!-- Miniature Preview Thumbnail -->
+<div class="h-20 w-full rounded-lg bg-primary-container p-2 flex flex-col justify-between overflow-hidden relative">
+<div class="flex items-center justify-between">
+<div class="w-10 h-2 bg-on-primary/60 rounded-full"></div>
+<div class="flex gap-1">
+<div class="w-3 h-1.5 bg-on-primary/40 rounded-full"></div>
+<div class="w-3 h-1.5 bg-on-primary/40 rounded-full"></div>
+</div>
+</div>
+<div class="flex gap-1.5">
+<div class="w-1/3 h-9 bg-surface/30 rounded"></div>
+<div class="w-1/3 h-9 bg-surface/30 rounded"></div>
+<div class="w-1/3 h-9 bg-surface/30 rounded"></div>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-primary">Botanical Modern</span>
+<span class="font-caption text-caption text-on-surface-variant line-clamp-1">Forest #1E3F20 • Sage • Cream</span>
+</div>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="w-3.5 h-3.5 rounded-full bg-primary-container inline-block"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-secondary inline-block"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-secondary-fixed inline-block"></span>
+<span class="font-caption text-[10px] text-on-surface-variant ml-auto font-medium">Selected</span>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest hover:bg-surface-container-low flex flex-col gap-2 relative cursor-pointer transition-all">
+<div class="h-20 w-full rounded-lg bg-surface-container-high p-2 flex flex-col justify-between overflow-hidden relative">
+<div class="flex items-center justify-between">
+<div class="w-12 h-2 bg-outline/50 rounded-full"></div>
+<div class="w-4 h-1.5 bg-outline/40 rounded-full"></div>
+</div>
+<div class="w-full h-8 bg-surface-container-highest rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-[16px] text-outline">palette</span>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Artisanal Studio</span>
+<span class="font-caption text-caption text-on-surface-variant line-clamp-1">Warm Terracotta • Charcoal</span>
+</div>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="w-3.5 h-3.5 rounded-full bg-tertiary-container inline-block"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-primary-fixed inline-block"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-surface-dim inline-block"></span>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="p-space-sm rounded-xl bg-surface-container-lowest hover:bg-surface-container-low flex flex-col gap-2 relative cursor-pointer transition-all">
+<div class="h-20 w-full rounded-lg bg-surface-container-high p-2 flex flex-col justify-between overflow-hidden relative">
+<div class="flex items-center justify-between">
+<div class="w-8 h-2 bg-outline/50 rounded-full"></div>
+<div class="w-6 h-1.5 bg-outline/40 rounded-full"></div>
+</div>
+<div class="grid grid-cols-2 gap-1 h-8">
+<div class="bg-surface-container-highest rounded"></div>
+<div class="bg-surface-container-highest rounded"></div>
+</div>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">Minimalist Market</span>
+<span class="font-caption text-caption text-on-surface-variant line-clamp-1">Nordic Slate • High-density</span>
+</div>
+<div class="flex items-center gap-1.5 mt-0.5">
+<span class="w-3.5 h-3.5 rounded-full bg-inverse-surface inline-block"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-outline-variant inline-block"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-surface-container inline-block"></span>
+</div>
+</div>
+</div>
+</div>
+<!-- STEP 3: Quick Inventory Seed & AI Stock Ingestion -->
+<div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between flex-wrap gap-2">
+<div class="flex items-center gap-space-sm">
+<span class="w-6 h-6 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm flex items-center justify-center font-bold">3</span>
+<h2 class="font-headline-md text-headline-md text-primary font-bold">Inventory Seed &amp; AI Stocking</h2>
+</div>
+<div class="flex items-center gap-1 bg-surface-container p-1 rounded-full font-label-sm text-label-sm">
+<button class="px-space-sm py-1 rounded-full bg-surface-container-lowest text-primary font-semibold shadow-xs">AI Auto-Ingest</button>
+<button class="px-space-sm py-1 rounded-full text-on-surface-variant hover:text-on-surface transition-colors">Instant Sample Pack</button>
+</div>
+</div>
+<!-- Drop Zone with Pre-loaded CSV State -->
+<div class="bg-surface-container-low rounded-xl p-space-md flex flex-col gap-space-sm">
+<div class="flex items-center justify-between bg-surface-container-lowest p-space-sm rounded-lg shadow-xs">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-secondary-container text-on-secondary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[24px]">description</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-2">
+<span class="font-label-sm text-label-sm font-bold text-on-surface">supplier_plants_2026.csv</span>
+<span class="bg-secondary-container text-on-secondary-container px-2 py-0.2 rounded-full font-label-sm text-[10px] font-bold">AI PARSED</span>
+</div>
+<span class="font-caption text-caption text-on-surface-variant">36 products detected • 4 categories mapped • Auto-tagged botanical images</span>
+</div>
+</div>
+<button class="px-space-md py-1.5 rounded-full bg-surface-container text-primary font-label-sm text-label-sm font-semibold hover:bg-surface-container-high transition-colors">
+              Review Map
+            </button>
+</div>
+<!-- Fast action helper row -->
+<div class="flex items-center justify-between pt-1 px-1 flex-wrap gap-2 text-on-surface-variant font-caption text-caption">
+<div class="flex items-center gap-1.5 text-secondary font-medium">
+<span class="material-symbols-outlined text-[16px]">spark</span>
+<span>AI generated SEO titles, alt texts, &amp; care guides</span>
+</div>
+<button class="text-primary font-label-sm text-label-sm font-semibold hover:underline flex items-center gap-1">
+<span class="material-symbols-outlined text-[16px]">autorenew</span>
+<span>Load 24 Demo Botanicals Instead</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Action Bar Footer -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex items-center justify-between flex-wrap gap-space-md sticky bottom-4 z-20">
+<div class="flex items-center gap-space-sm">
+<button class="px-space-lg py-2.5 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:bg-primary transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary-fixed text-[20px]">bolt</span>
+<span>Launch Storefront in 60s</span>
+</button>
+<button class="px-space-md py-2.5 rounded-full bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors font-label-md text-label-md font-semibold">
+            Save as Draft
+          </button>
+</div>
+<button class="text-on-surface-variant hover:text-primary font-label-sm text-label-sm font-medium flex items-center gap-1 transition-colors">
+<span>Switch to Deep Customizer</span>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+<!-- RIGHT: Real-time Live Quick-Start Launch Simulation & Preview (5 cols on lg) -->
+<div class="lg:col-span-5 flex flex-col gap-space-md sticky top-20">
+<!-- Preview Browser Shell Container -->
+<div class="bg-surface-container-lowest rounded-2xl shadow-xl overflow-hidden flex flex-col">
+<!-- Browser Header Bar -->
+<div class="bg-surface-container px-space-md py-2.5 flex items-center justify-between gap-space-sm">
+<div class="flex items-center gap-1.5">
+<div class="w-2.5 h-2.5 rounded-full bg-error/40"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-secondary-fixed-dim"></div>
+<div class="w-2.5 h-2.5 rounded-full bg-primary-fixed-dim"></div>
+</div>
+<!-- Subdomain URL pill -->
+<div class="flex-1 max-w-xs mx-auto bg-surface-container-lowest rounded-full px-space-sm py-1 flex items-center justify-center gap-1 text-[11px] font-mono text-on-surface-variant shadow-xs">
+<span class="material-symbols-outlined text-[13px] text-secondary">lock</span>
+<span class="truncate">https://verdant-botanica.fern.store</span>
+</div>
+<div class="flex items-center gap-1 text-on-surface-variant">
+<span class="material-symbols-outlined text-[16px] cursor-pointer hover:text-on-surface">open_in_new</span>
+</div>
+</div>
+<!-- Sync Status Banner -->
+<div class="bg-secondary-container/60 px-space-md py-1.5 flex items-center justify-between font-label-sm text-label-sm text-on-secondary-container">
+<div class="flex items-center gap-1.5 font-semibold">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Real-time Live Sync active</span>
+</div>
+<span class="font-caption text-caption text-on-secondary-container">36 Items Ready</span>
+</div>
+<!-- Rendered Storefront Simulation Body -->
+<div class="flex flex-col bg-surface p-space-sm space-y-space-sm max-h-[580px] overflow-y-auto">
+<!-- Mockup Storefront Nav -->
+<div class="bg-surface-container-lowest rounded-lg p-2.5 flex items-center justify-between shadow-xs">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary text-[20px]">potted_plant</span>
+<span class="font-headline-sm text-headline-sm font-bold tracking-tight text-primary">Verdant Botanica</span>
+</div>
+<div class="hidden sm:flex items-center gap-space-sm text-[11px] font-label-sm text-on-surface-variant">
+<span class="text-primary font-semibold">Shop Plants</span>
+<span>Rare Foliage</span>
+<span>Planters</span>
+<span>Care</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px] text-on-surface-variant">search</span>
+<div class="relative flex items-center justify-center w-7 h-7 rounded-full bg-surface-container">
+<span class="material-symbols-outlined text-[16px] text-primary">shopping_bag</span>
+<span class="absolute -top-1 -right-1 w-3.5 h-3.5 rounded-full bg-secondary text-on-secondary text-[9px] font-bold flex items-center justify-center">0</span>
+</div>
+</div>
+</div>
+<!-- Mockup Hero Banner with Visual Foliage Imagery -->
+<div class="rounded-xl overflow-hidden relative shadow-sm text-on-primary bg-primary-container p-space-md flex flex-col justify-end min-h-[160px]">
+<img class="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-40 pointer-events-none" data-alt="Lush green botanical plants arranged in a calm, modern, sunlit artisanal greenhouse studio with soft shadows and deep foliage tones matching modern earthy green palette" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJQTVt5bedERxQTxlhJizNJl82JJwAfNzhXDe2GZDl2Q4esktv8R33KKB1dAI2YoUK89-IN6OioiNyQxmP07JBg50w9iqQPdZooNmij39KGPnom_Bi3gw4CpqAfNI0tVjtHkehk1TQoRt7X6KFO8t1BTjyxtlBauQGSSEuwuj-zs7nq3BpjRwnHgDId44ujuS2Jt59bemJOop8nTR8N2FpNivn5BvfVJ9h4zVSVCesMjKqMRke9WVw"/>
+<div class="relative z-10 flex flex-col gap-1">
+<span class="bg-secondary/80 backdrop-blur-xs text-on-secondary text-[10px] font-bold tracking-wider px-2 py-0.5 rounded-full self-start uppercase">Spring Drop 2026</span>
+<h3 class="font-headline-lg text-headline-lg font-bold leading-tight">Cultivate your sanctuary.</h3>
+<p class="font-body-sm text-body-sm text-primary-fixed-dim line-clamp-1">Heirloom greenhouse foliage, shipped root-safe to your door.</p>
+<div class="mt-1">
+<button class="bg-surface-container-lowest text-primary font-label-sm text-label-sm px-3 py-1 rounded-full font-bold shadow-xs">
+                  Explore Rare Plants
+                </button>
+</div>
+</div>
+</div>
+<!-- Feature Micro-pills -->
+<div class="grid grid-cols-3 gap-1.5 text-center font-caption text-[10px] text-on-surface-variant">
+<div class="bg-surface-container-lowest py-1.5 px-1 rounded-md shadow-xs flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-secondary">local_shipping</span>
+<span>Carbon-neutral</span>
+</div>
+<div class="bg-surface-container-lowest py-1.5 px-1 rounded-md shadow-xs flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-secondary">verified_user</span>
+<span>30-Day Root Care</span>
+</div>
+<div class="bg-surface-container-lowest py-1.5 px-1 rounded-md shadow-xs flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[13px] text-secondary">spa</span>
+<span>Organic Soil</span>
+</div>
+</div>
+<!-- Product Showcase Grid (4 Curated Mock Products) -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm font-bold text-primary">Curated Live Selection</span>
+<span class="font-caption text-caption text-secondary font-semibold">View Catalog (36)</span>
+</div>
+<div class="grid grid-cols-2 gap-2">
+<!-- Product 1 -->
+<div class="bg-surface-container-lowest rounded-lg p-2 flex flex-col gap-1.5 shadow-xs">
+<div class="h-28 w-full rounded-md overflow-hidden bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="Monstera Deliciosa Albo Borsigiana plant with high white and emerald leaf variegation in an elegant minimalist off-white ceramic pot against soft botanical background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDf8SFTpwkc3htZsh29bvDDdEYRlFumVkP8ilXdQYJ2-5r9xhJ8XgBmSnYC9vSV5orZa6if8xWf-qzp489fHLy4p4lK228KA-6w_EiMuvdI_5LOfebAagUpCXhznBXxSa_ISTJSpYmqGGCH7gpVdfOqztWTnF5FScQJ6sALrxryzr-wxZnBE8QYLQXMus7_o9a8dhf_8ubdtYGaXuNuElx5pdKekuuXFISF-1ozk8ThqPFj7i163W-h"/>
+<span class="absolute top-1.5 left-1.5 bg-tertiary-container text-on-tertiary text-[9px] font-bold px-1.5 py-0.5 rounded-full">RARE</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface truncate">Monstera Albo</span>
+<div class="flex items-center justify-between mt-0.5">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">$75.00</span>
+<span class="text-[10px] text-secondary font-medium">In Stock</span>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="bg-surface-container-lowest rounded-lg p-2 flex flex-col gap-1.5 shadow-xs">
+<div class="h-28 w-full rounded-md overflow-hidden bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="Fiddle Leaf Fig ficus lyrata bush with large glossy violin shaped dark green leaves growing vigorously in artisanal planter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkbynpGiefBbZTNEKC-gB0sIWB_szyqbV1P7EFhr8_6D4xv17q5rPidk6xZs31xQzYnILHYGISCI1FRBqFuIXI9OxQgyYF6HNJTmNFCJHjcUGchFQh4CFlLhQ1ALttBK-3MA65Bp2PlfgQvJd5ECbSmupuR1NNdiDAuzN-YN78BSRRH9iTzTFW5pb06h7vB6CxF7cJGI7P4oeIcUEzbmEBt7wLk5bcpgn5M4KwewGx60mxM_WfMpDM"/>
+<span class="absolute top-1.5 left-1.5 bg-secondary-container text-on-secondary-container text-[9px] font-bold px-1.5 py-0.5 rounded-full">BESTSELLER</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface truncate">Fiddle Leaf Fig</span>
+<div class="flex items-center justify-between mt-0.5">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">$48.00</span>
+<span class="text-[10px] text-on-surface-variant font-medium">12 Left</span>
+</div>
+</div>
+</div>
+<!-- Product 3 -->
+<div class="bg-surface-container-lowest rounded-lg p-2 flex flex-col gap-1.5 shadow-xs">
+<div class="h-28 w-full rounded-md overflow-hidden bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="Handcrafted terracotta earthenware plant pot with subtle natural textural ribbing and drainage saucer on minimalist wooden table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRzss7ey6a7hrIc9eamz2G0_rQ3v7U6Re5VxxMGbDgussbF76cOGndf6Yy2guvaFIoemQnuwqS9AOjy2WGN3ofvYuRY3QR8FFRserstTjicIf-S8Qaf8ilcqUWcdX2nyibW0GAIB7QhiyNMsg6nLj_8H8emF_mKDqYdxJpG43Fqvd-FOkcPMmVf3t8e8qbFxoh6MkZffVb2V9ICmz3rUblrLH7pMtyn_fExDAwDIG2J1BpASP4Py0B"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface truncate">Clay Ribbed Planter</span>
+<div class="flex items-center justify-between mt-0.5">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">$34.00</span>
+<span class="text-[10px] text-secondary font-medium">Eco Material</span>
+</div>
+</div>
+</div>
+<!-- Product 4 -->
+<div class="bg-surface-container-lowest rounded-lg p-2 flex flex-col gap-1.5 shadow-xs">
+<div class="h-28 w-full rounded-md overflow-hidden bg-surface-container-high relative">
+<img class="w-full h-full object-cover" data-alt="Glass amber dropper bottle filled with organic plant foliage nutrient tonic sitting beside small leafy succulent with botanical label" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBHYe6jnKei6DU1gJe1xLwIRQrKhSdO_MXiW7b7hOl3O1EH6OE6S3RHp_z_7zXzSAmelFRg6FGdra3ZFz65IaiI5JZ3Bf9IzZ9cZQuUQo981BPviT7SSD6UhE9rUm5kThkZx4LgoMaDCEroKuAPF21Qm9G-E36hBGM-EWypdhBnNPqdEZT-jTAwWWXNdMj3LWy9bXxbdTO_6lGTjqlNvFG_3TEQ5H2gblD8jYltkGLj9dKsAmRHH7MZ"/>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm font-semibold text-on-surface truncate">Botanical Plant Tonic</span>
+<div class="flex items-center justify-between mt-0.5">
+<span class="font-headline-sm text-headline-sm font-bold text-primary">$22.00</span>
+<span class="text-[10px] text-secondary font-medium">100% Organic</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Readiness Checklist & Instant Deploy Progress Card -->
+<div class="bg-surface-container-lowest rounded-xl p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-secondary text-[20px]">task_alt</span>
+<span class="font-headline-sm text-headline-sm font-bold text-on-surface">Store Readiness Health</span>
+</div>
+<span class="font-label-md text-label-md font-bold text-secondary">92% Ready</span>
+</div>
+<!-- Deploy Progress Bar -->
+<div class="w-full h-2 rounded-full bg-surface-container-high overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 92%;"></div>
+</div>
+<ul class="flex flex-col gap-1.5 pt-1">
+<li class="flex items-center justify-between font-caption text-caption text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+<span>Multi-tenant routing &amp; Edge SSL Provisioned</span>
+</div>
+<span class="text-[11px] font-mono text-secondary font-semibold">Active</span>
+</li>
+<li class="flex items-center justify-between font-caption text-caption text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+<span>36 catalog products indexed with botanical tags</span>
+</div>
+<span class="text-[11px] font-mono text-secondary font-semibold">Ready</span>
+</li>
+<li class="flex items-center justify-between font-caption text-caption text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+<span>Stripe, Apple Pay &amp; Klarna gateways pre-linked</span>
+</div>
+<span class="text-[11px] font-mono text-secondary font-semibold">Linked</span>
+</li>
+<li class="flex items-center justify-between font-caption text-caption text-on-surface">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+<span>Responsive mobile viewport rendered</span>
+</div>
+<span class="text-[11px] font-mono text-secondary font-semibold">Verified</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div></main></div>
+</body></html>

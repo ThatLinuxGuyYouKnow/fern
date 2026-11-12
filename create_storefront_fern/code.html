@@ -1,0 +1,555 @@
+<!DOCTYPE html><html lang="en" style=""><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0" name="viewport"><meta content="web_dashboard" name="shell-type"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"><link href="https://fonts.googleapis.com" rel="preconnect"><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Plus+Jakarta+Sans:wght@500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "on-tertiary-container": "#79ad87", "surface-container-low": "#f1f4ef", "surface-container-high": "#e6e9e4", "surface-container-lowest": "#ffffff", "surface-dim": "#d8dbd6", "on-secondary": "#ffffff", "on-primary": "#ffffff", "on-background": "#191d1a", "secondary-fixed-dim": "#a1d494", "on-error": "#ffffff", "secondary": "#3b6934", "on-primary-fixed": "#012106", "surface-tint": "#446744", "surface-container": "#ecefe9", "tertiary-container": "#0c4123", "on-secondary-fixed-variant": "#23501e", "on-surface": "#191d1a", "error-container": "#ffdad6", "on-secondary-fixed": "#002201", "tertiary-fixed-dim": "#9dd3aa", "inverse-surface": "#2d312e", "on-primary-container": "#86ab83", "on-tertiary": "#ffffff", "tertiary-fixed": "#b9efc5", "on-error-container": "#93000a", "outline": "#737970", "primary-fixed-dim": "#aad1a6", "surface-container-highest": "#e0e3de", "on-surface-variant": "#424840", "tertiary": "#002913", "on-tertiary-fixed-variant": "#1e5031", "outline-variant": "#c2c8be", "on-tertiary-fixed": "#00210e", "surface-variant": "#e0e3de", "surface": "#f7faf5", "inverse-primary": "#aad1a6", "inverse-on-surface": "#eff2ec", "background": "#f7faf5", "secondary-fixed": "#bcf0ae", "primary-container": "#1e3f20", "on-primary-fixed-variant": "#2d4e2e", "secondary-container": "#b9eeab", "primary-fixed": "#c5edc1", "on-secondary-container": "#3f6d38", "primary": "#07290c", "error": "#ba1a1a", "surface-bright": "#f7faf5" }, borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" }, spacing: { "space-xl": "2rem", "gutter": "1.5rem", "space-md": "1rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "space-xs": "0.25rem", "gutter-sm": "1rem", "margin": "2rem", "margin-sm": "1rem" }, fontFamily: { "caption": ["Inter"], "display-lg": ["Plus Jakarta Sans"], "body-lg": ["Inter"], "body-md": ["Inter"], "display-lg-mobile": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "headline-xl-mobile": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "headline-xl": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "body-sm": ["Inter"], "headline-md": ["Plus Jakarta Sans"] }, fontSize: { "caption": ["12px", { "lineHeight": "16px", "letterSpacing": "0em", "fontWeight": "400" }], "display-lg": ["44px", { "lineHeight": "52px", "letterSpacing": "-0.025em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "400" }], "body-md": ["14px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "400" }], "display-lg-mobile": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "600" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.02em", "fontWeight": "600" }], "headline-lg": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }], "headline-xl-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "700" }], "headline-sm": ["15px", { "lineHeight": "22px", "letterSpacing": "0em", "fontWeight": "600" }], "headline-xl": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "500" }], "body-sm": ["13px", { "lineHeight": "18px", "letterSpacing": "0em", "fontWeight": "400" }], "headline-md": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }] } } } };</script></head><body class="bg-surface font-body-md text-on-surface antialiased"><aside class="fixed left-0 top-0 h-full w-64 bg-surface-container-low z-50 flex flex-col justify-between p-gutter shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><div class="flex flex-col gap-space-lg"><div class="flex items-center gap-space-sm px-space-xs"><img alt="Fern Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1VZTWpUh87pInB9DQrcjo7ns3dWFYJSTGixHbf7S4yIDiDENTqcn0K-jO4rWdJaq9lnZM5DdeCvdY_BfHFijSBlxhXg4JI6l3Ui9AaYh_QzYFIWWZ9wViIOC8hCvkcOEPPOXd2yJ0odD_xZlQ9p3fULE5Hg1-Ur1w1sfqXbnlOAImcqK0TsWkuC0k6f6C8fJjSo4hJ9vMrTjvWa_eGJGValgmpP2UhP9gAU8dub8vTHw2Ysrd0i8O7Wsmg"><span class="font-headline-md text-headline-md font-bold tracking-tight text-primary">Fern</span></div><nav class="flex flex-col gap-space-xs" data-active-classes="bg-primary-container text-on-primary font-label-lg font-semibold rounded-full"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="home" href="#"><span class="material-symbols-outlined text-[20px]">home</span><span class="">Home</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm transition-all bg-primary-container text-on-primary font-label-lg font-semibold rounded-full" data-path="storefront" href="#"><span class="material-symbols-outlined text-[20px]">storefront</span><span class="">Storefront</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="products" href="#"><span class="material-symbols-outlined text-[20px]">inventory_2</span><span class="">Products</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="orders" href="#"><span class="material-symbols-outlined text-[20px]">shopping_bag</span><span class="">Orders</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="customers" href="#"><span class="material-symbols-outlined text-[20px]">group</span><span class="">Customers</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="analytics" href="#"><span class="material-symbols-outlined text-[20px]">monitoring</span><span class="">Analytics</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="marketing" href="#"><span class="material-symbols-outlined text-[20px]">campaign</span><span class="">Marketing</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="discounts" href="#"><span class="material-symbols-outlined text-[20px]">loyalty</span><span class="">Discounts</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-full text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-all font-label-lg text-label-lg" data-path="settings" href="#"><span class="material-symbols-outlined text-[20px]">settings</span><span class="">Settings</span></a></nav></div><div class="p-space-md rounded-xl bg-surface-container-lowest shadow-[0_4px_20px_-2px_rgba(27,48,28,0.04)] relative overflow-hidden flex flex-col gap-space-sm"><div class="flex items-center justify-between"><div class="w-8 h-8 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container"><span class="material-symbols-outlined text-[18px]">eco</span></div><span class="font-label-sm text-label-sm text-secondary uppercase font-semibold">Pro</span></div><div class="flex flex-col gap-space-xs"><span class="font-headline-sm text-headline-sm text-on-surface">Grow your brand with Fern</span><span class="font-caption text-caption text-on-surface-variant">Unlock multi-tenant channels, botanical themes, and custom domains.</span></div><a class="mt-space-xs inline-flex items-center justify-center px-space-md py-space-xs rounded-full bg-primary-container text-on-primary font-label-md text-label-md hover:bg-primary transition-colors text-center" data-path="billing-upgrade" href="#">Upgrade</a></div></aside><div class="pl-64"><header class="fixed top-0 left-64 right-0 h-16 bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-40 flex items-center justify-between px-space-lg"><div class="flex items-center gap-space-md flex-1 max-w-lg"><img alt="Fern Logo" class="h-8 w-auto object-contain md:hidden" src="https://lh3.googleusercontent.com/aida/AEtjO1VZTWpUh87pInB9DQrcjo7ns3dWFYJSTGixHbf7S4yIDiDENTqcn0K-jO4rWdJaq9lnZM5DdeCvdY_BfHFijSBlxhXg4JI6l3Ui9AaYh_QzYFIWWZ9wViIOC8hCvkcOEPPOXd2yJ0odD_xZlQ9p3fULE5Hg1-Ur1w1sfqXbnlOAImcqK0TsWkuC0k6f6C8fJjSo4hJ9vMrTjvWa_eGJGValgmpP2UhP9gAU8dub8vTHw2Ysrd0i8O7Wsmg"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span><input class="w-full h-10 pl-10 pr-space-md rounded-full bg-surface-container-low text-on-surface placeholder:text-on-surface-variant font-body-sm text-body-sm focus:outline-none focus:bg-surface-container-lowest transition-colors" placeholder="Search everything in Fern..." type="text"></div></div><div class="flex items-center gap-space-md"><button class="w-9 h-9 rounded-full bg-surface-container-low hover:bg-surface-container-high flex items-center justify-center text-on-surface-variant transition-colors relative"><span class="material-symbols-outlined text-[20px]">notifications</span><span class="absolute top-2 right-2 w-2 h-2 rounded-full bg-secondary"></span></button><div class="flex items-center gap-space-sm pl-space-sm py-space-xs pr-space-md rounded-full bg-surface-container-low hover:bg-surface-container-high cursor-pointer transition-colors"><div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-[18px]">person</span></div><span class="font-label-md text-label-md text-on-surface hidden sm:inline-block">Jamie Doe</span><span class="material-symbols-outlined text-on-surface-variant text-[18px]">arrow_drop_down</span></div></div></header><main class="relative pt-16 bg-surface min-h-screen w-full px-space-lg pb-space-xl"><div class="flex flex-col w-full">
+<!-- Top Navigation & Breadcrumbs -->
+<div class="flex flex-wrap items-center justify-between gap-space-md mb-space-lg">
+<div class="flex flex-col gap-space-xs">
+<div class="flex items-center gap-space-xs">
+<a class="inline-flex items-center gap-1 font-label-md text-label-md text-secondary hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-[16px]">arrow_back</span>
+<span class="">Back to Storefronts</span>
+</a>
+<span class="text-outline-variant font-label-md text-label-md">/</span>
+<span class="font-label-md text-label-md text-on-surface-variant">Storefront Builder</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-primary font-bold tracking-tight">Create your new storefront</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">
+        Launch a bespoke, multi-tenant digital store in minutes. Choose how you want to build:
+      </p>
+</div>
+<!-- Mode Switcher Tabs -->
+<div class="flex items-center p-1 rounded-full bg-surface-container shadow-sm">
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-full bg-surface-container-lowest text-primary shadow-sm font-label-md text-label-md transition-all" id="btn-mode-ai">
+<span class="material-symbols-outlined text-[18px] text-secondary">auto_awesome</span>
+<span class="">Describe to AI</span>
+<span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm">AI-Powered</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" id="btn-mode-template">
+<span class="material-symbols-outlined text-[18px]">dashboard_customize</span>
+<span class="">Pick from Curated Templates</span>
+<span class="px-2 py-0.5 rounded-full bg-surface-container-high text-on-surface-variant font-label-sm text-label-sm">Popular</span>
+</button>
+<button class="flex items-center gap-space-xs px-space-md py-2 rounded-full text-on-surface-variant hover:text-on-surface font-label-md text-label-md transition-all" id="btn-mode-quickstart"><span class="material-symbols-outlined text-[18px] text-secondary">bolt</span><span class="">Quick Start</span><span class="px-2 py-0.5 rounded-full bg-secondary-fixed/20 text-secondary font-label-sm text-label-sm font-semibold">⚡ 60s Setup</span></button></div>
+</div>
+<!-- Main 12-Column Responsive Workspace -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-space-lg items-start">
+<!-- LEFT 7 COLS: The AI Creation Studio Form -->
+<div class="lg:col-span-7 flex flex-col gap-space-lg min-w-0">
+<!-- Card 1: Store Basics -->
+<section class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-full bg-surface-container-low text-primary flex items-center justify-center font-label-md text-label-md font-bold">1</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Store Identity &amp; Domain</h2>
+</div>
+<span class="font-caption text-caption text-secondary font-medium flex items-center gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+            Multi-Tenant Ready
+          </span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
+<!-- Store Name -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface">Store Name</label>
+<input class="w-full px-space-md py-2.5 rounded-xl bg-surface-container-low text-on-surface font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none transition-colors" id="input-store-name" placeholder="e.g. Sylvan Ceramics" type="text" value="Sylvan Living">
+</div>
+<!-- Subdomain Slug -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface">Store URL (Free Slug)</label>
+<div class="flex items-center rounded-xl bg-surface-container-low px-space-md py-2.5 text-on-surface font-body-sm text-body-sm">
+<span class="text-on-surface-variant select-none">https://</span>
+<input class="bg-transparent font-label-md text-label-md font-medium text-primary px-1 focus:outline-none max-w-[140px] truncate" id="input-store-slug" type="text" value="sylvan-living">
+<span class="text-on-surface-variant select-none">.fern.store</span>
+</div>
+</div>
+</div>
+<!-- Category Pills -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface">Industry &amp; Botanical Category</label>
+<div class="flex flex-wrap gap-2" id="category-pills">
+<button class="cat-pill px-3 py-1.5 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm flex items-center gap-1.5 shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">potted_plant</span>
+<span class="">Botanical &amp; Plants</span>
+</button>
+<button class="cat-pill px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high font-label-sm text-label-sm flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">chair</span>
+<span class="">Home &amp; Living</span>
+</button>
+<button class="cat-pill px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high font-label-sm text-label-sm flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">checkroom</span>
+<span class="">Apparel &amp; Goods</span>
+</button>
+<button class="cat-pill px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high font-label-sm text-label-sm flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">coffee</span>
+<span class="">Coffee &amp; Roastery</span>
+</button>
+<button class="cat-pill px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high font-label-sm text-label-sm flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">spa</span>
+<span class="">Health &amp; Wellness</span>
+</button>
+<button class="cat-pill px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high font-label-sm text-label-sm flex items-center gap-1.5 transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">palette</span>
+<span class="">Custom Craft</span>
+</button>
+</div>
+</div>
+<div class="flex flex-col gap-space-sm pt-2 border-t border-outline-variant/30"><div class="flex items-center justify-between"><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface font-semibold flex items-center gap-1.5"><span class="material-symbols-outlined text-[18px] text-secondary">photo_size_select_actual</span>Storefront Icon &amp; Favicon</span><span class="font-caption text-caption text-on-surface-variant">Defines your store brand avatar across channels, checkout, and browser bookmarks</span></div><button class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-container/50 hover:bg-secondary-container text-secondary text-label-sm font-label-sm font-semibold transition-colors" type="button"><span class="material-symbols-outlined text-[15px]">auto_awesome</span><span class="">AI Generate from Name</span></button></div><div class="grid grid-cols-1 md:grid-cols-2 gap-space-md mt-1"><div class="p-3 rounded-xl bg-surface-container-low flex items-center gap-3"><div class="relative w-14 h-14 rounded-xl bg-primary-container text-on-primary flex items-center justify-center shrink-0 shadow-sm border border-secondary-container/30"><span class="material-symbols-outlined text-[28px] text-secondary-fixed">spa</span><span class="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center shadow-sm"><span class="material-symbols-outlined text-[12px]">check</span></span></div><div class="flex flex-col min-w-0 flex-1"><div class="flex items-center justify-between"><span class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Store Brand Icon</span><span class="text-[10px] text-on-surface-variant">512x512 PNG</span></div><p class="font-caption text-[11px] text-on-surface-variant truncate">Sage Botanical Mark (Auto)</p><div class="flex items-center gap-2 mt-1.5"><button class="text-[11px] font-label-sm font-semibold text-secondary hover:text-primary transition-colors" type="button">Change Icon</button><span class="text-outline-variant text-[10px]">·</span><button class="text-[11px] font-label-sm text-on-surface-variant hover:text-on-surface transition-colors" type="button">Upload Custom</button></div></div></div><div class="p-3 rounded-xl bg-surface-container-low flex flex-col justify-between gap-2"><div class="flex items-center justify-between"><div class="flex items-center gap-2"><div class="w-7 h-7 rounded-lg bg-surface-container-lowest border border-outline-variant/40 flex items-center justify-center text-secondary shadow-sm"><span class="material-symbols-outlined text-[16px]">spa</span></div><div class="flex flex-col"><span class="font-label-sm text-label-sm text-on-surface font-semibold">Browser Favicon</span><span class="font-caption text-[10px] text-on-surface-variant">32x32 / .ico / .svg</span></div></div><span class="px-1.5 py-0.2 rounded-full bg-secondary-fixed/30 text-secondary text-[10px] font-semibold">Synced</span></div><label class="flex items-center gap-2 cursor-pointer pt-1"><input checked="" class="w-3.5 h-3.5 rounded text-secondary accent-secondary focus:ring-0" type="checkbox"><span class="font-caption text-[11px] text-on-surface">Auto-sync favicon with Store Icon</span></label><span class="font-caption text-[10px] text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[13px] text-secondary">info</span>Appears in browser tabs, favorites &amp; bookmarks</span></div></div></div></section>
+<!-- Card 2: AI Generation Prompt -->
+<section class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col gap-space-md relative overflow-hidden">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-md text-label-md font-bold">2</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Storefront Prompt Vision</h2>
+</div>
+<span class="font-label-sm text-label-sm px-2.5 py-1 rounded-full bg-secondary-container/60 text-secondary font-medium flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">psychology</span>
+            Fern LLM Engine v4.2
+          </span>
+</div>
+<div class="relative flex flex-col">
+<textarea class="w-full p-space-md rounded-xl bg-surface-container-low text-on-surface placeholder:text-on-surface-variant/70 font-body-md text-body-md focus:bg-surface-container-lowest focus:outline-none transition-colors resize-none" id="prompt-textarea" placeholder="Describe your dream storefront aesthetic, layout style, target audience, and key sections (e.g., 'A minimalist Scandinavian ceramic studio featuring warm earthy tones, full-bleed hero banner, customer reviews carousel, curated weekly drops, and sticky cart preview...')." rows="4">A serene Japanese-Nordic botanical boutique with soft sage tones, oversized natural typography, minimalist product cards featuring glazed pots and rare foliage, with a dedicated sustainable sourcing narrative section.</textarea>
+<div class="flex items-center justify-between mt-2 px-1">
+<span class="font-caption text-caption text-on-surface-variant">Press chips below to prepend design criteria</span>
+<span class="font-caption text-caption text-secondary font-medium">194 characters</span>
+</div>
+</div>
+<!-- Quick Prompt Starters -->
+<div class="flex flex-col gap-1.5">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Quick Prompt Starters</span>
+<div class="flex flex-wrap gap-2">
+<button class="prompt-starter px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-secondary-container transition-colors font-body-sm text-body-sm flex items-center gap-1.5" type="button">
+<span class="">🌿 Minimalist Botanical &amp; Greenery</span>
+</button>
+<button class="prompt-starter px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-secondary-container transition-colors font-body-sm text-body-sm flex items-center gap-1.5" type="button">
+<span class="">☕ Artisanal Coffee Roastery</span>
+</button>
+<button class="prompt-starter px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-secondary-container transition-colors font-body-sm text-body-sm flex items-center gap-1.5" type="button">
+<span class="">🏺 Handcrafted Pottery Lookbook</span>
+</button>
+<button class="prompt-starter px-3 py-1 rounded-full bg-surface-container text-on-surface hover:bg-secondary-container transition-colors font-body-sm text-body-sm flex items-center gap-1.5" type="button">
+<span class="">🕯️ Luxury Eco Scented Goods</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Card 3: Visual Reference Image Upload (Optional) -->
+<section class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-full bg-surface-container-low text-primary flex items-center justify-center font-label-md text-label-md font-bold">3</span>
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Visual Reference &amp; Moodboard</h2>
+<p class="font-caption text-caption text-on-surface-variant">Fern will analyze colors, layout density, and spatial rhythm from your uploads</p>
+</div>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Optional</span>
+</div>
+<!-- Uploaded Item Pill/Preview -->
+<div class="flex flex-col sm:flex-row items-center justify-between gap-space-md p-space-md rounded-xl bg-surface-container-low shadow-sm">
+<div class="flex items-center gap-space-md w-full sm:w-auto">
+<div class="relative w-24 h-16 rounded-lg overflow-hidden bg-surface-container-highest shrink-0 shadow-sm">
+<img alt="Uploaded Storefront Moodboard Reference" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwExFNVbvVWMXHjS6nTnWAMG2cN2c--018BwLxbqDXWSs6WGj24DQnmYtjqlAWgdQh_CZ85Y_vKK-n0mjEtdhC3aj11SmsMumbCqS8wwJeSnJaTrOpjQor8gWVRNb_mq8-L-VQ6yJNtBZVCPkqpu8yyp1DLqJrVf9g36JjYmCvY5f8EDluS_cdfYy0GHxZzlwz402gNV2eqm-TfJWOdkFTV9Mojr1dfmrVOTK0ycrnxbfU_LfqB-JU2aVkn1R9n4dZ_w">
+<span class="absolute bottom-1 right-1 bg-primary/80 backdrop-blur-sm text-on-primary rounded p-0.5 flex items-center">
+<span class="material-symbols-outlined text-[12px]">verified</span>
+</span>
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-2">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">storefront_moodboard_v1.png</span>
+<span class="font-caption text-caption text-on-surface-variant">1.2 MB</span>
+</div>
+<div class="flex items-center gap-1.5 mt-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span class="font-caption text-caption text-secondary font-medium">Extracted 6 color tokens &amp; modular card layout</span>
+</div>
+</div>
+</div>
+<div class="flex items-center gap-2 shrink-0 self-end sm:self-center">
+<button class="px-3 py-1.5 rounded-full bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-sm text-label-sm transition-colors" type="button">Replace</button>
+<button class="w-8 h-8 rounded-full bg-surface-container-lowest hover:bg-error-container text-on-surface-variant hover:text-error flex items-center justify-center transition-colors" type="button">
+<span class="material-symbols-outlined text-[18px]">delete</span>
+</button>
+</div>
+</div>
+<!-- Dropzone Container -->
+<div class="p-space-lg rounded-xl bg-surface-container/50 flex flex-col items-center justify-center text-center cursor-pointer hover:bg-surface-container-high transition-colors">
+<div class="w-12 h-12 rounded-full bg-surface-container-lowest flex items-center justify-center text-secondary mb-space-xs shadow-sm">
+<span class="material-symbols-outlined text-[24px]">cloud_upload</span>
+</div>
+<p class="font-label-md text-label-md text-on-surface">Drop additional moodboards, screenshots, or SVG brand guides</p>
+<p class="font-caption text-caption text-on-surface-variant mt-0.5">Supports PNG, JPG, WEBP, SVG up to 25MB each</p>
+</div>
+</section>
+<!-- Card 4: Brand Style & Personality Selectors -->
+<section class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center gap-space-sm">
+<span class="w-7 h-7 rounded-full bg-surface-container-low text-primary flex items-center justify-center font-label-md text-label-md font-bold">4</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">Brand Style &amp; Personality</h2>
+</div>
+<!-- Color Mood Palette -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface">Color Palette &amp; Atmosphere</label>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+<!-- Earthy Botanical (Selected) -->
+<label class="flex items-center justify-between p-3 rounded-xl bg-primary-container text-on-primary cursor-pointer shadow-sm">
+<div class="flex items-center gap-space-sm">
+<span class="w-3.5 h-3.5 rounded-full bg-secondary-fixed ring-2 ring-on-primary flex items-center justify-center"></span>
+<div>
+<div class="font-label-md text-label-md font-semibold">Earthy Botanical</div>
+<div class="font-caption text-caption text-on-primary-container">Sage, Moss, Ivory</div>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-3.5 h-3.5 rounded-full bg-[#1E3F20]"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-[#79AD87]"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-[#F7FAF5]"></span>
+</div>
+</label>
+<!-- Nordic Minimal -->
+<label class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface cursor-pointer transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="w-3.5 h-3.5 rounded-full bg-surface-container-highest"></span>
+<div>
+<div class="font-label-md text-label-md font-semibold">Nordic Minimal</div>
+<div class="font-caption text-caption text-on-surface-variant">Oat, Slate, Off-White</div>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-3.5 h-3.5 rounded-full bg-[#424840]"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-[#C2C8BE]"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-[#F1F4EF]"></span>
+</div>
+</label>
+<!-- Warm Terracotta -->
+<label class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface cursor-pointer transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="w-3.5 h-3.5 rounded-full bg-surface-container-highest"></span>
+<div>
+<div class="font-label-md text-label-md font-semibold">Warm Terracotta</div>
+<div class="font-caption text-caption text-on-surface-variant">Clay, Sand, Charcoal</div>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-3.5 h-3.5 rounded-full bg-[#A85838]"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-[#E5B898]"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-[#2A2320]"></span>
+</div>
+</label>
+<!-- High Contrast Modern -->
+<label class="flex items-center justify-between p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-on-surface cursor-pointer transition-colors">
+<div class="flex items-center gap-space-sm">
+<span class="w-3.5 h-3.5 rounded-full bg-surface-container-highest"></span>
+<div>
+<div class="font-label-md text-label-md font-semibold">Modern Evergreen</div>
+<div class="font-caption text-caption text-on-surface-variant">Deep Forest, Cream, Gold</div>
+</div>
+</div>
+<div class="flex items-center gap-1">
+<span class="w-3.5 h-3.5 rounded-full bg-[#07290C]"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-[#E6E9E4]"></span>
+<span class="w-3.5 h-3.5 rounded-full bg-[#C89D3C]"></span>
+</div>
+</label>
+</div>
+</div>
+<!-- Typography Tone -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface">Typography Pairing</label>
+<div class="grid grid-cols-3 gap-space-sm">
+<button class="p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-left flex flex-col gap-1 transition-colors" type="button">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Editorial Serif</span>
+<span class="font-caption text-caption text-on-surface-variant">Fraunces &amp; Inter</span>
+</button>
+<button class="p-3 rounded-xl bg-primary-container text-on-primary text-left flex flex-col gap-1 shadow-sm" type="button">
+<span class="font-label-md text-label-md font-semibold flex items-center justify-between">
+<span class="">Modern Sans</span>
+<span class="material-symbols-outlined text-[16px]">check_circle</span>
+</span>
+<span class="font-caption text-caption text-on-primary-container">Plus Jakarta &amp; Inter</span>
+</button>
+<button class="p-3 rounded-xl bg-surface-container-low hover:bg-surface-container text-left flex flex-col gap-1 transition-colors" type="button">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Warm Geometric</span>
+<span class="font-caption text-caption text-on-surface-variant">Outfit &amp; Space Grotesk</span>
+</button>
+</div>
+</div>
+<!-- Key Storefront Modules Toggle -->
+<div class="flex flex-col gap-space-xs">
+<label class="font-label-md text-label-md text-on-surface">Include Initial Layout Modules</label>
+<div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
+<label class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<input checked="" class="w-4 h-4 rounded text-secondary accent-secondary focus:ring-0" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Hero Banner</span>
+</label>
+<label class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<input checked="" class="w-4 h-4 rounded text-secondary accent-secondary focus:ring-0" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Product Grid</span>
+</label>
+<label class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<input checked="" class="w-4 h-4 rounded text-secondary accent-secondary focus:ring-0" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Brand Story</span>
+</label>
+<label class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<input checked="" class="w-4 h-4 rounded text-secondary accent-secondary focus:ring-0" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Testimonials</span>
+</label>
+<label class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<input checked="" class="w-4 h-4 rounded text-secondary accent-secondary focus:ring-0" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Announcement Bar</span>
+</label>
+<label class="flex items-center gap-2 p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container cursor-pointer transition-colors">
+<input class="w-4 h-4 rounded text-secondary accent-secondary focus:ring-0" type="checkbox">
+<span class="font-body-sm text-body-sm text-on-surface font-medium">Newsletter Signup</span>
+</label>
+</div>
+</div>
+</section>
+<!-- Bottom Sticky-Like Action Bar -->
+<section class="rounded-2xl bg-surface-container-lowest p-space-lg shadow-sm flex flex-col gap-space-md"><div class="flex items-center justify-between"><div class="flex items-center gap-space-sm"><span class="w-7 h-7 rounded-full bg-surface-container-low text-primary flex items-center justify-center font-label-md text-label-md font-bold">5</span><div><h2 class="font-headline-md text-headline-md text-on-surface">Product Catalog &amp; Stock</h2><p class="font-caption text-caption text-on-surface-variant">Seed your storefront with real inventory immediately or start with placeholder botanical goods.</p></div></div><span class="px-2.5 py-0.5 rounded-full bg-surface-container text-on-surface-variant font-label-sm text-label-sm">Optional</span></div><div class="grid grid-cols-1 md:grid-cols-2 gap-space-md"><div class="p-space-md rounded-xl bg-surface-container-low flex flex-col justify-between gap-space-sm"><div class="flex flex-col gap-space-xs"><div class="flex items-center justify-between"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[20px] text-secondary">table_view</span><span class="font-label-md text-label-md font-semibold text-on-surface">Standard Template</span></div><span class="font-caption text-caption text-secondary font-medium">CSV / XLSX</span></div><p class="font-caption text-caption text-on-surface-variant">Use our pre-structured botanical template with SKU, Title, Price, Stock &amp; Category tags.</p></div><div class="flex flex-col gap-2"><button class="w-full flex items-center justify-center gap-1.5 py-2 px-3 rounded-lg bg-surface-container-lowest hover:bg-surface-container text-on-surface font-label-sm text-label-sm transition-colors shadow-sm" type="button"><span class="material-symbols-outlined text-[16px] text-secondary">download</span><span class="">Download Template (.CSV)</span></button><div class="p-3 rounded-lg border-2 border-dashed border-outline-variant bg-surface-container-lowest/60 hover:bg-surface-container-lowest flex flex-col items-center justify-center text-center cursor-pointer transition-colors"><span class="material-symbols-outlined text-[20px] text-on-surface-variant mb-0.5">upload_file</span><span class="font-caption text-caption text-on-surface font-medium">Drop filled template here</span><span class="text-[10px] text-on-surface-variant">or click to browse files</span></div></div></div><div class="p-space-md rounded-xl bg-secondary-container/20 border border-secondary-container/40 flex flex-col justify-between gap-space-sm"><div class="flex flex-col gap-space-xs"><div class="flex items-center justify-between"><div class="flex items-center gap-2"><span class="material-symbols-outlined text-[20px] text-secondary">auto_awesome</span><span class="font-label-md text-label-md font-semibold text-on-surface">AI Stock Ingestion</span></div><span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px] font-semibold">Auto-Mapping</span></div><p class="font-caption text-caption text-on-surface-variant">Drop any supplier sheet. Fern AI automatically normalizes columns, creates tags &amp; botanical copy.</p></div><div class="flex items-center justify-between p-2.5 rounded-lg bg-surface-container-lowest shadow-sm"><div class="flex items-center gap-2 min-w-0"><div class="w-8 h-8 rounded bg-primary-container text-on-primary flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[18px]">description</span></div><div class="flex flex-col min-w-0"><span class="font-label-sm text-label-sm text-on-surface font-semibold truncate">autumn_inventory.xlsx</span><span class="font-caption text-[11px] text-secondary font-medium">42 items detected &amp; mapped</span></div></div><div class="flex items-center gap-1 shrink-0"><span class="px-2 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[10px] font-semibold">Ready</span></div></div><div class="flex items-center justify-between text-[11px] font-caption text-on-surface-variant pt-1"><span class="flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>AI Schema matched 100%</span><button class="text-secondary hover:text-primary font-medium hover:underline" type="button">Preview 42 items</button></div></div></div></section><div class="rounded-2xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col sm:flex-row items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-9 h-9 rounded-full bg-secondary-container flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[20px]">bolt</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface font-semibold">Instant Generative Render</span>
+<span class="font-caption text-caption text-on-surface-variant">Typically builds responsive layouts in ~25s</span>
+</div>
+</div>
+<div class="flex items-center gap-space-sm w-full sm:w-auto justify-end">
+<button class="px-space-md py-2.5 rounded-full bg-surface-container hover:bg-surface-container-high text-on-surface font-label-md text-label-md transition-colors" type="button">
+            Save as Draft
+          </button>
+<button class="flex-1 sm:flex-none flex items-center justify-center gap-2 px-6 py-2.5 rounded-full bg-primary-container hover:bg-primary text-on-primary font-label-md text-label-md transition-all shadow-md hover:shadow-lg" id="btn-generate-ai" type="button">
+<span class="material-symbols-outlined text-[18px]">auto_awesome</span>
+<span class="">Generate Storefront with AI</span>
+</button>
+</div>
+</div>
+</div>
+<!-- RIGHT 5 COLS: Live Interactive Preview & Template Quick-Pick Dock -->
+<div class="lg:col-span-5 flex flex-col gap-space-lg min-w-0">
+<!-- Card: AI Real-time Preview Engine -->
+<section class="rounded-2xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col gap-space-sm">
+<div class="flex items-center justify-between px-space-xs pt-space-xs">
+<div class="flex items-center gap-space-xs">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-md text-label-md text-on-surface font-semibold">Real-Time Synthesis Preview</span>
+</div>
+<!-- Desktop / Mobile Toggle -->
+<div class="flex items-center p-0.5 rounded-full bg-surface-container">
+<button class="w-7 h-7 rounded-full bg-surface-container-lowest text-on-surface flex items-center justify-center shadow-sm" type="button">
+<span class="material-symbols-outlined text-[16px]">desktop_windows</span>
+</button>
+<button class="w-7 h-7 rounded-full text-on-surface-variant hover:text-on-surface flex items-center justify-center transition-colors" type="button">
+<span class="material-symbols-outlined text-[16px]">smartphone</span>
+</button>
+</div>
+</div>
+<!-- Mockup Browser Window Frame -->
+<div class="rounded-xl bg-surface-container-low overflow-hidden shadow-inner flex flex-col">
+<!-- Window Controls & URL bar -->
+<div class="bg-surface-container flex flex-col"><div class="px-3 pt-2 pb-1.5 flex items-center gap-2 border-b border-outline-variant/20"><div class="flex items-center gap-1.5 pr-2"><span class="w-2.5 h-2.5 rounded-full bg-on-surface-variant/20"></span><span class="w-2.5 h-2.5 rounded-full bg-on-surface-variant/20"></span><span class="w-2.5 h-2.5 rounded-full bg-on-surface-variant/20"></span></div><div class="flex items-center gap-1.5 px-3 py-1 rounded-t-lg bg-surface text-[11px] font-caption text-on-surface shadow-sm max-w-[200px] border-t border-x border-outline-variant/30"><div class="w-3.5 h-3.5 rounded bg-primary-container text-secondary-fixed flex items-center justify-center shrink-0"><span class="material-symbols-outlined text-[11px]">spa</span></div><span class="truncate font-medium">Sylvan Living – Botanical</span><span class="material-symbols-outlined text-[12px] text-on-surface-variant ml-auto hover:text-on-surface cursor-pointer">close</span></div><div class="flex items-center text-on-surface-variant hover:text-on-surface cursor-pointer px-1"><span class="material-symbols-outlined text-[14px]">add</span></div></div><div class="px-3 py-1.5 bg-surface-container flex items-center gap-2"><div class="flex items-center gap-1 text-on-surface-variant"><span class="material-symbols-outlined text-[15px] opacity-60">arrow_back</span><span class="material-symbols-outlined text-[15px] opacity-60">arrow_forward</span><span class="material-symbols-outlined text-[15px]">refresh</span></div><div class="flex-1 mx-1 px-3 py-0.5 rounded-full bg-surface-container-lowest text-[11px] font-caption text-on-surface-variant truncate text-center flex items-center justify-center gap-1"><span class="material-symbols-outlined text-[13px] text-secondary">lock</span><span class="">https://sylvan-living.fern.store</span></div></div></div>
+<!-- Canvas Preview Body -->
+<div class="p-3 bg-surface flex flex-col gap-3"><div class="flex items-center justify-between px-2.5 py-1.5 rounded-lg bg-secondary-container/50 border border-secondary-container"><div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px] text-secondary">bolt</span><span class="font-label-sm text-[11px] text-on-secondary-container font-semibold">⚡ Quick Start Mode: 3-step setup with curated botanical presets</span></div><div class="flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container-lowest text-primary text-[10px] font-label-sm font-semibold shadow-sm"><span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span><span class="">Catalog Seed: 42 ready</span></div></div>
+<!-- Storefront Announcement Bar -->
+<div class="py-1 px-3 rounded-md bg-tertiary-container text-on-tertiary-container text-[10px] font-label-sm text-center flex items-center justify-center gap-1">
+<span class="">🌿 Complimentary organic plant food on all orders over $48</span>
+</div>
+<!-- Mini Storefront Navigation Header -->
+<div class="flex items-center justify-between px-2 py-1 bg-surface-container-lowest rounded-lg shadow-sm"><div class="flex items-center gap-1.5"><div class="w-5 h-5 rounded-md bg-primary-container text-secondary-fixed flex items-center justify-center shrink-0 shadow-sm"><span class="material-symbols-outlined text-[13px]">spa</span></div><span class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">Sylvan Living</span></div><div class="flex items-center gap-2 text-[11px] font-caption text-on-surface-variant"><span class="">Shop</span><span class="">Foliage</span><span class="">Care</span></div><div class="flex items-center gap-1"><span class="material-symbols-outlined text-[16px] text-on-surface">search</span><span class="material-symbols-outlined text-[16px] text-on-surface">shopping_bag</span></div></div>
+<!-- Hero Banner Mockup with Tone Gradients -->
+<div class="rounded-xl bg-primary-container text-on-primary p-4 relative overflow-hidden flex flex-col justify-end min-h-[140px] shadow-sm">
+<div class="absolute -right-6 -bottom-6 w-28 h-28 rounded-full bg-secondary-fixed/20 blur-xl"></div>
+<span class="px-2 py-0.5 rounded-full bg-on-primary/10 text-on-primary-container font-label-sm text-[10px] w-max mb-1">
+                New Summer Harvest
+              </span>
+<h3 class="font-headline-md text-headline-md font-bold leading-tight">Good things grow here.</h3>
+<p class="font-caption text-[11px] text-on-primary-container mt-1 line-clamp-1">Carefully cultivated specimen plants and artisanal stoneware.</p>
+<div class="mt-2.5 flex items-center gap-2">
+<span class="px-3 py-1 rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-[10px] font-bold">Shop Collection</span>
+<span class="px-3 py-1 rounded-full bg-on-primary/15 text-on-primary font-label-sm text-[10px]">Read Journal</span>
+</div>
+</div>
+<!-- Product Card Grid Preview -->
+<div class="grid grid-cols-2 gap-2">
+<!-- Product 1 -->
+<div class="rounded-xl bg-surface-container-lowest p-2 flex flex-col gap-1.5 shadow-sm">
+<div class="w-full h-20 rounded-lg bg-surface-container overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="A lush architectural Monstera Deliciosa planted in a handcrafted sage ceramic pot, bathed in warm natural Scandinavian morning sunlight against an ivory textured plaster wall." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCMnnf6QoWQ4zPFu79rNSLhAql_z8OL-NxZLQCqSFYFIJ6T7S9AdnVjX3hxniaEXKhpblIiV3dZv3yEbfuuMqi8f-Z6C-34_ROWg43YExFFe6tg2qVdGXmT4BBvTgOPASxD1A0reyTg14g2NEdZE_Zf77JGkxPXL05iGbz_ncHNvtYCYlSgCFBQ5BGcFOrHzFIYPAB2fYKpqC4kKpILdevBu7Q5z0g1gxkGKQnujvzHb7rsv9feIoQW">
+<span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-surface/90 font-label-sm text-[9px] text-primary">In Stock</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Monstera Albo Variegata</span>
+<div class="flex items-center justify-between mt-0.5">
+<span class="font-caption text-[11px] text-secondary font-bold">$64.00</span>
+<span class="w-5 h-5 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[12px]">add</span>
+</span>
+</div>
+</div>
+</div>
+<!-- Product 2 -->
+<div class="rounded-xl bg-surface-container-lowest p-2 flex flex-col gap-1.5 shadow-sm">
+<div class="w-full h-20 rounded-lg bg-surface-container overflow-hidden relative">
+<img class="w-full h-full object-cover" data-alt="Artisanal glazed stoneware planters arranged neatly on a raw oak shelving unit with trailing ivy and misted fern fronds in soft diffused greenhouse light." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDJWpu_gpgPQWrJia47o0_uCuu5p-Mi0bnJW5i0_uHAiaS0zXOE6QqzPOLl1dWRru7gyKUPPqcEad9tAhYCM8EtaIBRDxViXf7SQf4kTHCzQSAb4TMIkAxitYsBDVntdVjrvkTB37IQxIVyO2Id5_bEt9KdC6oN8iWEunwWBtni_OMprqO5_R4iTtNn9bF7XNY9aOl-MuX4raaIoI5Xf8XxysrNv_6KDM1C7nmdTSo-vL2uKBIRFp7c">
+<span class="absolute top-1 left-1 px-1.5 py-0.5 rounded bg-secondary-container text-on-secondary-container font-label-sm text-[9px]">Artisan</span>
+</div>
+<div class="flex flex-col">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold truncate">Basalt Terracotta Vessel</span>
+<div class="flex items-center justify-between mt-0.5">
+<span class="font-caption text-[11px] text-secondary font-bold">$38.00</span>
+<span class="w-5 h-5 rounded-full bg-surface-container flex items-center justify-center text-on-surface">
+<span class="material-symbols-outlined text-[12px]">add</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Extracted Palette Swatches Bar -->
+<div class="flex items-center justify-between p-2 rounded-lg bg-surface-container-lowest shadow-sm">
+<span class="font-caption text-[11px] text-on-surface-variant font-medium">Synthesized Brand Tokens:</span>
+<div class="flex items-center gap-1.5">
+<div class="w-4 h-4 rounded-full bg-primary" title="Primary #07290C"></div>
+<div class="w-4 h-4 rounded-full bg-primary-container" title="Surface Container #1E3F20"></div>
+<div class="w-4 h-4 rounded-full bg-secondary" title="Accent #3B6934"></div>
+<div class="w-4 h-4 rounded-full bg-secondary-container" title="Mint Highlight #B9EEAB"></div>
+<div class="w-4 h-4 rounded-full bg-surface-container-low" title="Canvas Tint #F1F4EF"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- AI Insights Note -->
+<div class="p-3 rounded-xl bg-surface-container-low flex items-start gap-2.5"><span class="material-symbols-outlined text-[18px] text-secondary shrink-0 mt-0.5">neurology</span><p class="font-caption text-caption text-on-surface-variant"><strong class="font-semibold text-on-surface">Synthesized with 42 catalog items:</strong> Botanical e-commerce layout configured with instant stock ingestion, 4-column adaptive catalog, organic typography, and sustainability credential tags.</p></div>
+</section>
+<!-- Card: Or start from a curated template -->
+<section class="rounded-2xl bg-surface-container-lowest p-space-md shadow-sm flex flex-col gap-space-md">
+<div class="flex items-center justify-between px-space-xs">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-on-surface font-semibold">Or start with a curated theme</h3>
+<p class="font-caption text-caption text-on-surface-variant">Pre-tuned layouts designed for botanical commerce</p>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold">24 ready</span>
+</div>
+<!-- 3 Mini Cards -->
+<div class="flex flex-col gap-space-sm">
+<!-- Template 1 -->
+<div class="group flex items-center justify-between p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-14 h-12 rounded-lg bg-surface-container-highest overflow-hidden shrink-0 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A clean modern botanical storefront interface preview featuring airy whitespace, lush green monstera plants, and elegant typography on an ivory background." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAX8K0qIalr5kBDkMi6wB0rNl-cgqCB1VFNMbA_lJ5hBxiwoNZmcTgszuhQW9uT_QAIwQ3EbF4_cFfo_hHWtl2AQ5tGijw6yPHfwYH5Igam8ZkjZR5RkXo0cod2AGjXSWPZs8W0FmBpOdMBzFPByyhAQzsvcjhYFqT7l4WbKDbb0lJvJOmubPlXJVP7Lq8tNl03wFVXXwmZtP6k6YZ-xPRMXu6IYiBdEokZEwtyMOrANfVlshgwkIng">
+</div>
+<div class="flex flex-col min-w-0">
+<div class="flex items-center gap-1.5">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Verdant Clean</span>
+<span class="px-1.5 py-0.2 rounded-full bg-secondary-container text-on-secondary-container text-[10px] font-medium">Top Pick</span>
+</div>
+<span class="font-caption text-caption text-on-surface-variant">Modern plant &amp; lifestyle shop · 1.4k stores</span>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-lowest group-hover:bg-primary group-hover:text-on-primary text-on-surface flex items-center justify-center transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<!-- Template 2 -->
+<div class="group flex items-center justify-between p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-14 h-12 rounded-lg bg-surface-container-highest overflow-hidden shrink-0 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A minimalist Japanese and Nordic ceramics studio storefront design with warm oat tones, artisanal handcrafted pottery, and sleek typography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAyugjDIoUKLCUIlCzfHhFZH0a0WdjYo51aUYFhlIA0Cuz89r1b_jKquPGTE9CAB_IVFlAVtsEzPzQ_oRRfTnH0pFo0gFrcojdCDdAoZ0Wj_CFy_kNiMLSKXmvF3dk-xk9fmZzpN0RbbTw4t0AenWbDRAo0zp0aEcq2bhld58olB7igkM0kA60LltHyUWYRSMfGdjzyDaQ_RnD80Rujm6ikXU5Igo7idbMpjG27IhFY7WE5VYuJbcIR">
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Nordic Craft</span>
+<span class="font-caption text-caption text-on-surface-variant">Artisan ceramics &amp; goods · 890 stores</span>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-lowest group-hover:bg-primary group-hover:text-on-primary text-on-surface flex items-center justify-center transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+<!-- Template 3 -->
+<div class="group flex items-center justify-between p-2.5 rounded-xl bg-surface-container-low hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center gap-space-sm min-w-0">
+<div class="w-14 h-12 rounded-lg bg-surface-container-highest overflow-hidden shrink-0 shadow-sm">
+<img class="w-full h-full object-cover" data-alt="A fast single-product high-converting e-commerce catalog featuring eco-friendly scented beeswax candles with warm atmospheric lighting." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDPdimPP8vAtCz7ISMrCE_G5LuYR-7-dEoDFsC-nZ9DOUaiSRkHdVlv-fQu9K7gMID1Yr4iO45xKltXArw8RhDUuZy-8o5pHhWugD0cgMtpGLz2evv95NiFCUp0zl-zo399gLM-Onto9CClvDTMB_TxgJVzLlx_rTiGlvpGvYRcdokLoGy_xa7Paz_C1bW_KXa0TMj2gt8QA3mit2QDMNdwtJLSPjRyrPFg9_ItXtoTquYFFAzTQNdK">
+</div>
+<div class="flex flex-col min-w-0">
+<span class="font-label-md text-label-md text-on-surface font-semibold truncate">Bloom Express</span>
+<span class="font-caption text-caption text-on-surface-variant">Single-product fast catalog · 620 stores</span>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full bg-surface-container-lowest group-hover:bg-primary group-hover:text-on-primary text-on-surface flex items-center justify-center transition-all shrink-0" type="button">
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</button>
+</div>
+</div>
+<a class="inline-flex items-center justify-center gap-1.5 text-center font-label-md text-label-md text-secondary hover:text-primary font-semibold py-1 transition-colors" href="#">
+<span class="">Browse all 24 curated themes</span>
+<span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+</a>
+</section>
+</div>
+</div>
+</div>
+<script>
+  // Dynamic sync between Store Name and free slug preview
+  const nameInput = document.getElementById('input-store-name');
+  const slugInput = document.getElementById('input-store-slug');
+
+  if (nameInput && slugInput) {
+    nameInput.addEventListener('input', (e) => {
+      const slugVal = e.target.value
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+      slugInput.value = slugVal || 'my-store';
+    });
+  }
+
+  // Quick Prompt Starters Insertion
+  const promptArea = document.getElementById('prompt-textarea');
+  const promptStarters = document.querySelectorAll('.prompt-starter');
+
+  promptStarters.forEach(starter => {
+    starter.addEventListener('click', () => {
+      const text = starter.innerText.replace(/^[^\w\s]+/, '').trim();
+      if (promptArea) {
+        promptArea.value = `A brand inspired by ${text}, featuring an airy organic layout, calm botanical palette, bespoke product gallery, and story-driven storytelling.`;
+        promptArea.focus();
+      }
+    });
+  });
+
+  // Category Pill Selection Toggle
+  const catPills = document.querySelectorAll('.cat-pill');
+  catPills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      catPills.forEach(p => {
+        p.className = 'cat-pill px-3 py-1.5 rounded-full bg-surface-container-low text-on-surface-variant hover:bg-surface-container-high font-label-sm text-label-sm flex items-center gap-1.5 transition-colors';
+      });
+      pill.className = 'cat-pill px-3 py-1.5 rounded-full bg-primary-container text-on-primary font-label-sm text-label-sm flex items-center gap-1.5 shadow-sm';
+    });
+  });
+
+  // Simulated AI generation button state
+  const genBtn = document.getElementById('btn-generate-ai');
+  if (genBtn) {
+    genBtn.addEventListener('click', () => {
+      const originalHtml = genBtn.innerHTML;
+      genBtn.innerHTML = `
+        <span class="material-symbols-outlined text-[18px] animate-spin">refresh</span>
+        <span>Synthesizing Storefront...</span>
+      `;
+      genBtn.classList.add('opacity-90');
+      setTimeout(() => {
+        genBtn.innerHTML = `
+          <span class="material-symbols-outlined text-[18px]">check</span>
+          <span>Storefront Ready!</span>
+        `;
+        setTimeout(() => {
+          genBtn.innerHTML = originalHtml;
+          genBtn.classList.remove('opacity-90');
+        }, 2200);
+      }, 1800);
+    });
+  }
+</script></main></div>
+
+</body></html>
