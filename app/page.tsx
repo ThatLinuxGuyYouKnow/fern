@@ -35,6 +35,7 @@ export default function Landing() {
             <a href="#how" className="hover:text-neutral-900">How it works</a>
             <a href="#templates" className="hover:text-neutral-900">Templates</a>
             <a href="#features" className="hover:text-neutral-900">Features</a>
+            <Link href="/admin" className="hover:text-neutral-900">Manage</Link>
           </nav>
           <Link href="/create?mode=quickstart" className="rounded-full px-5 py-2 text-sm font-semibold text-white" style={{ background: GREEN }}>
             Create your store →
@@ -184,7 +185,10 @@ export default function Landing() {
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-6 text-sm text-neutral-500">
           <span className="font-bold" style={{ color: GREEN }}>fern</span>
           <span>Instant storefronts with PayPal checkout — also shoppable by AI agents via MCP.</span>
-          <Link href="/create" className="font-semibold hover:underline" style={{ color: GREEN }}>Create a store</Link>
+          <span className="flex gap-4">
+            <Link href="/admin" className="font-semibold hover:underline" style={{ color: GREEN }}>Manage a store</Link>
+            <Link href="/create" className="font-semibold hover:underline" style={{ color: GREEN }}>Create a store</Link>
+          </span>
         </div>
       </footer>
     </main>

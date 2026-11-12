@@ -95,10 +95,11 @@ export default function AdminPage({ params }: { params: { slug: string } }) {
     <div className="flex min-h-screen text-neutral-900" style={{ background: CREAM }}>
       {/* Sidebar */}
       <aside className="hidden w-60 shrink-0 flex-col border-r border-neutral-200 bg-white md:flex">
-        <a href="/" className="flex items-center gap-2 px-6 pb-6 pt-6 text-2xl font-bold" style={{ color: GREEN }}>
+        <a href="/" className="flex items-center gap-2 px-6 pb-1 pt-6 text-2xl font-bold" style={{ color: GREEN }}>
           <svg width="26" height="26" viewBox="0 0 24 24" fill={GREEN}><path d="M12 2C7 7 4 11 4 15a8 8 0 0 0 16 0c0-4-3-8-8-13zm0 18a6 6 0 0 1-6-6c0-.5.1-1 .2-1.5C8 14 10 16 12 20c2-4 4-6 5.8-7.5.1.5.2 1 .2 1.5a6 6 0 0 1-6 6z" /></svg>
           fern
         </a>
+        <a href="/admin" className="px-6 pb-5 text-xs text-neutral-500 hover:underline">← All stores</a>
         <nav className="flex-1 space-y-1 px-3">
           {nav.map((n) => {
             const active = tab === n.id;
@@ -116,13 +117,6 @@ export default function AdminPage({ params }: { params: { slug: string } }) {
             </span>
           ))}
         </nav>
-        <div className="m-3 rounded-xl p-4" style={{ background: MINT }}>
-          <p className="text-sm font-semibold">Grow your brand with Fern</p>
-          <p className="mt-1 text-xs text-neutral-600">Beautiful storefronts. Powerful tools. No code.</p>
-          <button onClick={() => setTab("settings")} className="mt-3 rounded-full px-4 py-1.5 text-xs font-semibold text-white" style={{ background: GREEN }}>
-            Upgrade
-          </button>
-        </div>
       </aside>
 
       {/* Main column */}

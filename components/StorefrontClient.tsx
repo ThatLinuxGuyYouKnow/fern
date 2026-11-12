@@ -197,7 +197,6 @@ export default function StorefrontClient({
   const radius = RADIUS[s.radius];
   const onPrimary = textOn(theme.primary);
   const onAccent = textOn(theme.accent);
-  const isDark = s.hero === "split" || s.bg === "#0A0A0B" || s.bg === "#060B16";
   const heroProduct = products[0];
   const compact = s.density === "compact";
 
@@ -368,7 +367,7 @@ export default function StorefrontClient({
         <footer className="mt-14 flex flex-wrap items-center justify-between gap-2 border-t pt-5 text-xs opacity-60" style={{ borderColor: `${s.ink}30` }}>
           <span className="font-bold" style={{ color: s.ink }}>{store.name}</span>
           <span>{theme.heroSubtitle} · powered by fern</span>
-          {isDark && <span className="uppercase tracking-[0.2em]">Est. online · ships worldwide</span>}
+          <a href={`/admin/${store.slug}`} className="font-semibold underline">Manage this store</a>
         </footer>
       </div>
     </main>
