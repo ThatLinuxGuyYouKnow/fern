@@ -64,7 +64,8 @@ services:
       - "443:443"
     volumes:
       # DNS_PROVIDER=route53 → Caddyfile ; duckdns → deploy/Caddyfile.duckdns
-      - ${CADDYFILE:-./Caddyfile}:/etc/caddy/Caddyfile:ro
+      # NOTE: leading ./ is required — compose treats bare relative paths as named volumes.
+      - ./${CADDYFILE:-Caddyfile}:/etc/caddy/Caddyfile:ro
       - caddy_data:/data
       - caddy_config:/config
     depends_on:
