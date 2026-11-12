@@ -79,11 +79,11 @@ DEEPSEEK_API_KEY=$DEEPSEEK_API_KEY
 EOF
 chmod 600 .env.prod
 
-# --- DuckDNS: point apex + wildcard at this instance (detected public IP) ---
+# --- DuckDNS: point the apex at this instance (sub-subdomains inherit it) ---
 if [ "$DNS_PROVIDER" = "duckdns" ] && [ -n "$DUCKDNS_TOKEN" ]; then
   SUB="${DOMAIN%.duckdns.org}"
-  curl -fsS "https://www.duckdns.org/update?domains=${SUB},*.${SUB}&token=${DUCKDNS_TOKEN}" \
-    || echo "WARN: duckdns update failed — rerun: curl 'https://www.duckdns.org/update?domains=${SUB},*.${SUB}&token=<token>'"
+  curl -fsS "https://www.duckdns.org/update?domains=${SUB}&token=${DUCKDNS_TOKEN}" \
+    || echo "WARN: duckdns update failed — rerun: curl 'https://www.duckdns.org/update?domains=${SUB}&token=<token>'"
 fi
 
 # --- up ---

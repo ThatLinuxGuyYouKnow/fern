@@ -142,9 +142,11 @@ echo "EIP=$EIP"
 say "6. DNS: apex + wildcard A records"
 if [ "$DNS_PROVIDER" = "duckdns" ]; then
   SUB="${DOMAIN%.duckdns.org}"
-  RES=$(curl -fsS "https://www.duckdns.org/update?domains=${SUB},*.${SUB}&token=${DUCKDNS_TOKEN}&ip=${EIP}" || echo "KO")
-  echo "DuckDNS: ${SUB} + *.${SUB} -> ${EIP} : ${RES} (expect OK)"
-  [ "$RES" = "OK" ] || echo "WARN: DuckDNS update failed — check DUCKDNS_TOKEN and that '<name>' + '*.<name>' exist in the dashboard"
+  # DuckDNS rejects "*" in the domains param, but any sub-subdomain
+  # (<slug>.<name>.duckdns.org) resolves to this A record automatically.
+  RES=$(curl -fsS "https://www.duckdns.org/update?domains=${SUB}&token=${DUCKDNS_TOKEN}&ip=${EIP}" || echo "KO")
+  echo "DuckDNS: ${SUB} -> ${EIP} : ${RES} (expect OK)"
+  [ "$RES" = "OK" ] || echo "WARN: DuckDNS update failed — check DUCKDNS_TOKEN and that '${SUB}' exists in the dashboard"
 else
   HOSTED_ZONE_NAME=$(aws route53 get-hosted-zone --id "$HOSTED_ZONE_ID" --query 'HostedZone.Name' --output text)
   CHANGES=$(cat <<JSON

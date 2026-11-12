@@ -8,9 +8,11 @@
 #   ACME_EMAIL   e.g. you@example.com
 #   DUCKDNS_TOKEN  from duckdns.org account page (caddy container env)
 #
-# DuckDNS dashboard (one time): create subdomains "<name>" AND "*.<name>"
-# (e.g. "fernshop" and "*.fernshop"). The bootstrap/user-data script points
-# both at the instance's elastic IP via the DuckDNS update API.
+# DuckDNS dashboard (one time): create just "<name>" (e.g. "fernshop").
+# Do NOT add "*.<name>" — DuckDNS rejects "*" as a domain; any sub-subdomain
+# (<slug>.<name>.duckdns.org) resolves to the same A record automatically.
+# The wildcard TLS cert (*.<name>.duckdns.org) still works via DNS-01: DuckDNS
+# TXT records apply to all sub-subdomains.
 
 {
 	email {$ACME_EMAIL}

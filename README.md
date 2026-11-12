@@ -91,7 +91,8 @@ Every fern store is agent-buyable two ways (same PayPal checkout underneath):
 
 **DNS provider is a switch** (`DNS_PROVIDER` in `deploy/aws.env`):
 `route53` for a custom domain, `duckdns` for a free `<name>.duckdns.org`
-(create both `<name>` and `*.<name>` subdomains in the DuckDNS dashboard).
+(register only `<name>` in the DuckDNS dashboard — tenant subdomains inherit
+its A record; DuckDNS rejects `*` entries).
 
 Automated path:
 
