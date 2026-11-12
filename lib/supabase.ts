@@ -18,12 +18,27 @@ export type Store = {
   created_at: string;
 };
 
+/** Design tokens that make presets actually look different (not just recolored).
+ *  Optional so themes stored before this existed still render — StorefrontClient
+ *  fills defaults per template via resolveStyle() in lib/themes. */
+export type ThemeStyle = {
+  font: "sans" | "serif" | "grotesk" | "mono";
+  bg: string;
+  surface: string;
+  ink: string;
+  hero: "centered" | "banner" | "split" | "cover";
+  card: "soft" | "bordered" | "brutal" | "flat";
+  radius: "sharp" | "soft" | "round";
+  density: "airy" | "regular" | "compact";
+};
+
 export type ThemeJson = {
   template: "minimal" | "grid" | "bold";
   primary: string;
   accent: string;
   heroTitle: string;
   heroSubtitle: string;
+  style?: ThemeStyle;
 };
 
 export type Product = {

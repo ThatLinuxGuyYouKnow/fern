@@ -1,4 +1,5 @@
 import type { ThemeJson } from "./supabase";
+import { resolveStyle } from "./themes";
 
 /**
  * Real AI theme generation via DeepSeek (OpenAI-compatible chat completions).
@@ -101,5 +102,8 @@ export async function generateThemeAI(
   if (theme.heroTitle.trim().toLowerCase() === storeName.trim().toLowerCase()) {
     theme.heroTitle = fallbackTitle;
   }
+  // Pin the layout tokens for the chosen template family so the stored theme
+  // renders exactly this design (palette colors above still apply on top).
+  theme.style = resolveStyle(theme);
   return { theme, notes: [`provider=deepseek/${MODEL}`, `template=${template}`, `palette=${paletteId}`] };
 }

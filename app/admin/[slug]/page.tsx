@@ -9,6 +9,7 @@ import "ag-grid-community/styles/ag-theme-quartz.css";
 import { supabase, type Store, type Product, type Order, dollars } from "@/lib/supabase";
 import { validateCsvRecord, type CsvRow } from "@/lib/csv";
 import { TEMPLATES } from "@/lib/themes";
+import TemplatePreview from "@/components/TemplatePreview";
 import type { ThemeJson } from "@/lib/supabase";
 
 ModuleRegistry.registerModules([AllCommunityModule]);
@@ -491,16 +492,20 @@ function SettingsTab({ store, subUrl, reload, notify, fail }: {
     <div className="grid gap-6 lg:grid-cols-2">
       <div className="rounded-xl border bg-white p-5">
         <h2 className="font-semibold">Theme</h2>
-        <div className="mt-3 grid grid-cols-3 gap-2">
-          {TEMPLATES.map((t) => (
-            <button key={t.id} onClick={() => setTheme(t.theme)}
-              className={`rounded-lg border p-2 text-left ${theme.template === t.id ? "ring-2" : ""}`}
-              style={theme.template === t.id ? ({ ["--tw-ring-color" as string]: GREEN } as React.CSSProperties) : {}}>
-              <span className="block h-6 rounded" style={{ background: t.theme.primary }} />
-              <span className="mt-1 block text-xs font-medium">{t.name}</span>
-            </button>
-          ))}
+        <div className="mt-3 grid grid-cols-2 gap-2">
+          {TEMPLATES.map((t) => {
+            const active = theme.template === t.theme.template && theme.primary === t.theme.primary && theme.style?.bg === t.theme.style?.bg;
+            return (
+              <button key={t.name} onClick={() => setTheme(t.theme)}
+                className={`rounded-lg border p-1.5 text-left ${active ? "ring-2" : ""}`}
+                style={active ? ({ ["--tw-ring-color" as string]: GREEN } as React.CSSProperties) : {}}>
+                <TemplatePreview theme={t.theme} storeName={t.name} />
+                <span className="mt-1 block px-0.5 text-xs font-medium">{t.name}{active ? " ✓" : ""}</span>
+              </button>
+            );
+          })}
         </div>
+        <p className="mt-2 text-xs text-neutral-500">Picking a preset replaces layout, fonts and colours. Editing the brand colour below keeps the preset layout.</p>
         <div className="mt-3 space-y-3">
           <label className="block text-sm">Brand color
             <input type="color" value={theme.primary} onChange={(e) => setTheme({ ...theme, primary: e.target.value })} className="ml-2 h-8 w-12 align-middle" />

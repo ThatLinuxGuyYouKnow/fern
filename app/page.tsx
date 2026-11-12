@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TEMPLATES } from "@/lib/themes";
+import TemplatePreview from "@/components/TemplatePreview";
 
 const GREEN = "#1e6b3f";
 
@@ -138,20 +139,14 @@ export default function Landing() {
         <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {TEMPLATES.map((t) => (
             <Link key={t.name} href="/create?mode=templates" className="group rounded-2xl border bg-white p-3 transition hover:shadow-md">
-              <div className="rounded-xl p-3" style={{ background: t.theme.primary }}>
-                <div className="h-2 w-10 rounded-full bg-white/60" />
-                <p className="mt-3 truncate font-bold text-white">{t.theme.heroTitle}</p>
-                <p className="truncate text-xs text-white/80">{t.theme.heroSubtitle}</p>
-                <div className="mt-3 flex gap-1.5">
-                  <span className="h-8 flex-1 rounded bg-white/25" /><span className="h-8 flex-1 rounded bg-white/25" /><span className="h-8 flex-1 rounded bg-white/25" />
-                </div>
-              </div>
-              <div className="flex items-center justify-between px-1 pt-3">
+              <TemplatePreview theme={t.theme} storeName={t.name} />
+              <div className="flex items-start justify-between gap-2 px-1 pt-3">
                 <div>
-                  <p className="text-sm font-bold">{t.name}</p>
+                  <p className="text-sm font-bold group-hover:underline">{t.name}</p>
                   <p className="text-xs text-neutral-500">{t.tagline}</p>
+                  <p className="mt-1 text-xs leading-relaxed text-neutral-500">{t.vibe}</p>
                 </div>
-                <span className="flex gap-1">
+                <span className="flex shrink-0 gap-1 pt-0.5">
                   <i className="h-3.5 w-3.5 rounded-full border" style={{ background: t.theme.primary }} />
                   <i className="h-3.5 w-3.5 rounded-full border" style={{ background: t.theme.accent }} />
                 </span>
