@@ -14,5 +14,5 @@ export default function CreatePage({
 }) {
   const requested = searchParams?.mode;
   const mode = MODES.find((m) => m === requested);
-  return <CreateWizard initialMode={mode ?? "ai"} />;
+  return <CreateWizard initialMode={mode ?? "quickstart"} />;
 }
